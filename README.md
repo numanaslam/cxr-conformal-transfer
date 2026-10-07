@@ -1,6 +1,6 @@
 # Code and results for "Cross-Site Transfer of Conformal Abstention Guarantees in Interpretable Chest X-ray Concept Models"
 
-Numan Aslam, Ghulam Mustafa, Adnan N. Qureshi, Zia Ul Rehman, Asghar Ali Shah
+Numan Aslam, Ghulam Mustafa, Adnan N. Qureshi, Zia Ul Rehman, Usman Ahmed Raza
 
 This archive holds the Python code that produces every number reported in the article, together
 with the result files and the console logs of the run from which those numbers were taken. It

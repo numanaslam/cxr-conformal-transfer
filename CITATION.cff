@@ -4,7 +4,7 @@ title: "Code and results for \"Cross-Site Transfer of Conformal Abstention Guara
 type: software
 version: 1.0.0
 license: MIT
-repository-code: "https://github.com/OWNER/cxr-conformal-transfer"
+repository-code: "https://github.com/numanaslam/cxr-conformal-transfer"
 authors:
   - family-names: Aslam
     given-names: Numan
@@ -19,9 +19,9 @@ authors:
   - family-names: Rehman
     given-names: Zia Ul
     affiliation: "Government College University, Lahore, Pakistan"
-  - family-names: Shah
-    given-names: Asghar Ali
-    affiliation: "Department of Computer Science, Kateb University, Kabul, Afghanistan"
+  - family-names: Raza
+    given-names: Usman Ahmed
+    affiliation: "Department of Computational Intelligence, University of Naples Federico II, Naples, Italy"
 keywords:
   - conformal prediction
   - selective prediction
