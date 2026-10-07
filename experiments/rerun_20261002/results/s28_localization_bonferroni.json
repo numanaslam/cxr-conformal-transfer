@@ -1,0 +1,79 @@
+{
+  "m": 8,
+  "z95": 1.959963986120195,
+  "z_bonferroni": 2.7343687889295634,
+  "per_concept": {
+    "Consolidation": {
+      "hit": 0.49230769230769234,
+      "null": 0.09709576138147574,
+      "lo95": 0.4,
+      "lo_bonf": 0.3635281460447496,
+      "clears_95": true,
+      "clears_bonferroni": true,
+      "n": 130
+    },
+    "Infiltration": {
+      "hit": 0.34913793103448276,
+      "null": 0.1124868050668543,
+      "lo95": 0.28448275862068967,
+      "lo_bonf": 0.2589367402253095,
+      "clears_95": true,
+      "clears_bonferroni": true,
+      "n": 232
+    },
+    "Atelectasis": {
+      "hit": 0.2857142857142857,
+      "null": 0.10568513119533526,
+      "lo95": 0.19047619047619047,
+      "lo_bonf": 0.15284649988743998,
+      "clears_95": true,
+      "clears_bonferroni": true,
+      "n": 63
+    },
+    "Pleural Effusion": {
+      "hit": 0.2727272727272727,
+      "null": 0.08167240922342968,
+      "lo95": 0.22857142857142856,
+      "lo_bonf": 0.2111249356620988,
+      "clears_95": true,
+      "clears_bonferroni": true,
+      "n": 385
+    },
+    "Cardiomegaly": {
+      "hit": 0.20557491289198607,
+      "null": 0.1212579108298373,
+      "lo95": 0.17886178861788618,
+      "lo_bonf": 0.16830711930640738,
+      "clears_95": true,
+      "clears_bonferroni": true,
+      "n": 861
+    },
+    "Mass": {
+      "hit": 0.15705128205128205,
+      "null": 0.04948325484039777,
+      "lo95": 0.11858974358974358,
+      "lo_bonf": 0.10339313777505589,
+      "clears_95": true,
+      "clears_bonferroni": true,
+      "n": 312
+    },
+    "Nodule": {
+      "hit": 0.125,
+      "null": 0.04948325484039777,
+      "lo95": 0.08653846153846154,
+      "lo_bonf": 0.07134185572377384,
+      "clears_95": true,
+      "clears_bonferroni": true,
+      "n": 312
+    },
+    "Pleural Thickening": {
+      "hit": 0.06225165562913907,
+      "null": 0.047655088525476515,
+      "lo95": 0.046357615894039736,
+      "lo_bonf": 0.04007769402095025,
+      "clears_95": false,
+      "clears_bonferroni": false,
+      "n": 755
+    }
+  }
+}

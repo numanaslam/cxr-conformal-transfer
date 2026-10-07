@@ -1,0 +1,73 @@
+{
+  "per_concept": {
+    "Atelectasis": {
+      "nih_auroc": 0.7597387822906516,
+      "vindr_auroc": 0.6560400514897344,
+      "nih_ece": 0.007449210296747262,
+      "vindr_ece": 0.0577895886467248,
+      "vindr_npos": 92
+    },
+    "Cardiomegaly": {
+      "nih_auroc": 0.8386220855430383,
+      "vindr_auroc": 0.8211552318501582,
+      "nih_ece": 0.004260407676360332,
+      "vindr_ece": 0.13035070934243106,
+      "vindr_npos": 1153
+    },
+    "Pleural Effusion": {
+      "nih_auroc": 0.8451850615717403,
+      "vindr_auroc": 0.8163404969259468,
+      "nih_ece": 0.010322304187808558,
+      "vindr_ece": 0.01727174130825565,
+      "vindr_npos": 520
+    },
+    "Infiltration": {
+      "nih_auroc": 0.6911023113925345,
+      "vindr_auroc": 0.7986200791735752,
+      "nih_ece": 0.007950794216821357,
+      "vindr_ece": 0.11603082026735588,
+      "vindr_npos": 310
+    },
+    "Mass": {
+      "nih_auroc": 0.7890412117737182,
+      "vindr_auroc": 0.7476277610414469,
+      "nih_ece": 0.006129326117359515,
+      "vindr_ece": 0.01643451502073126,
+      "vindr_npos": 416
+    },
+    "Nodule": {
+      "nih_auroc": 0.689985800821832,
+      "vindr_auroc": 0.6892992310954986,
+      "nih_ece": 0.0043409305267982515,
+      "vindr_ece": 0.005400035750904451,
+      "vindr_npos": 416
+    },
+    "Consolidation": {
+      "nih_auroc": 0.7869015146229779,
+      "vindr_auroc": 0.9144079397672826,
+      "nih_ece": 0.003737384593649819,
+      "vindr_ece": 0.011198495074301379,
+      "vindr_npos": 184
+    },
+    "Pleural Thickening": {
+      "nih_auroc": 0.7439032408526134,
+      "vindr_auroc": 0.8046732451427708,
+      "nih_ece": 0.002221367170907835,
+      "vindr_ece": 0.10524017421490993,
+      "vindr_npos": 1003
+    },
+    "Normal": {
+      "nih_auroc": 0.7597575023264623,
+      "vindr_auroc": 0.8029231831945819,
+      "nih_ece": 0.025924098484397657,
+      "vindr_ece": 0.13464890914822825,
+      "vindr_npos": 5269
+    }
+  },
+  "mean_abnormal": {
+    "nih_auroc": 0.7680600011086383,
+    "vindr_auroc": 0.7810205045608017,
+    "nih_ece": 0.0058014655983066165,
+    "vindr_ece": 0.05746450995320181
+  }
+}

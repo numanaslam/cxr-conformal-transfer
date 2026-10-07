@@ -1,0 +1,24 @@
+# NIH ChestX-ray14 image tarballs — ~45 GB total, 12 files, ~112k images.
+# Source of truth: the official `batch_download_zips.py` on the NIH Box page:
+#   https://nihcc.app.box.com/v/ChestXray-NIHCC
+# These are the published shared-static links. If a download fails validation (HTML instead
+# of gzip), NIH rotated the link — open the page above and replace the offending line.
+#
+# Usage:
+#   python scripts/pdownload.py --list scripts/nih_urls.txt --out data/raw/nih --workers 4 --extract
+#
+# Format:  <url>  <output_filename>
+https://nihcc.box.com/shared/static/vfk49d74nhbxq3nqjg0900w5nvkorp5c.tar.gz  images_001.tar.gz
+https://nihcc.box.com/shared/static/i28rlmbvmfjbl8p2n3ril0pptcmcu9d1.tar.gz  images_002.tar.gz
+https://nihcc.box.com/shared/static/f1t00wrtdk94satdfb9olcolqx20z2jp.tar.gz  images_003.tar.gz
+https://nihcc.box.com/shared/static/0aowwzs5lhjrceb3qp67ahp0rd1l1etg.tar.gz  images_004.tar.gz
+https://nihcc.box.com/shared/static/v5e3goj22zr6h8tzualxfsqlqaygfbsn.tar.gz  images_005.tar.gz
+https://nihcc.box.com/shared/static/asi7ikud9jwnkrnkj99jnpfkjdes7l6l.tar.gz  images_006.tar.gz
+https://nihcc.box.com/shared/static/jn1b4mw4n6lnh74ovmcjb8y48h8xj07n.tar.gz  images_007.tar.gz
+https://nihcc.box.com/shared/static/tvpxmn7qyrgl0w8wfh9kqfjskv6nmm1j.tar.gz  images_008.tar.gz
+https://nihcc.box.com/shared/static/upyy3ml7qdumlgk2rfcvlb9k6gvqq2pj.tar.gz  images_009.tar.gz
+https://nihcc.box.com/shared/static/l6nilvfa9cg3s28tqv1qc1olm3gnz54p.tar.gz  images_010.tar.gz
+https://nihcc.box.com/shared/static/hhq8fkdgvcari67vfhs7ppg2w6ni4jze.tar.gz  images_011.tar.gz
+https://nihcc.box.com/shared/static/ioqwiy20ihqwyr8pf4c24eazhh281pbu.tar.gz  images_012.tar.gz
+# Labels metadata (small CSV; grab the current link from the Box page above):
+# <url>  Data_Entry_2017_v2020.csv

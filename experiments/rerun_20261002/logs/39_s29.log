@@ -1,0 +1,21 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s29_gradcam_baseline --config configs/vindr.yaml --boxes data/raw/vindr/vinbigdata/train.csv --max-images 1500
+[s29] DenseNet-121 (densenet121-res224-nih); concepts mapped: ['Atelectasis', 'Cardiomegaly', 'Consolidation', 'Infiltration', 'Mass', 'Nodule', 'Pleural Effusion', 'Pleural Thickening']
+[s29] VinDr test images with box+dims: 2013 (using 1500), method gradcam++
+
+[s29] Grad-CAM++ pointing game over 3050 pairs, 1500 images
+  Grad-CAM++ (DenseNet-NIH) : 0.234 [0.217,0.251]
+  ours (concept occlusion)  : 0.190
+  random-point null         : 0.081
+
+    concept            GradCAM++    ours   null     n
+    Cardiomegaly           0.459   0.206  0.121   861
+    Consolidation          0.308   0.492  0.097   130
+    Atelectasis            0.270   0.286  0.106    63
+    Infiltration           0.228   0.349  0.112   232
+    Mass                   0.160   0.157  0.049   312
+    Nodule                 0.135   0.125  0.049   312
+    Pleural Effusion       0.130   0.273  0.082   385
+    Pleural Thickening     0.087   0.062  0.048   755
+
+[s29] concept-occlusion >= Grad-CAM++ on 4/8 concepts. Report both; this is the honest black-box localization baseline.
+[s29] wrote experiments/results\s29_gradcam_baseline.json

@@ -1,0 +1,13 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s24_valve_ablation --config configs/vindr.yaml
+[s24] NIH calib known-abn n=4430 | VinDr test known=2013 oov=207 | alpha=0.05
+
+score       q_hat  VinDr ffr(known)  OOV flag            sep AUROC [CI]
+valve      0.5309             0.057     0.034       0.406 [0.365,0.448]
+A          0.8524             0.034     0.000       0.315 [0.279,0.352]
+gap        0.9120             0.014     0.053       0.696 [0.659,0.730]
+entropy    0.9003             0.113     0.116       0.526 [0.484,0.566]
+
+[s24] VERDICT:
+  valve sep-AUROC 0.406 does NOT beat the best simple score 0.696 -> the product form adds little; present s(x) as a difficulty score, not an open-set detector.
+
+[s24] wrote experiments/results\s24_valve_ablation.json

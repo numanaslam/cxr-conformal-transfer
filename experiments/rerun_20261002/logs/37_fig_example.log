@@ -1,0 +1,30 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.make_fig_example --config configs/vindr.yaml
+[fig] q_site (site-conditional G1 accept threshold, alpha=0.05) = 0.530
+[fig] top candidates  (id | s(x) | accepted | present concepts >=0.5):
+    0f81902a673f0d826b55ea9dc9da297b.png s=0.133  acc=1  [Pleural Effusion 0.85]
+    ea18aab66eff5e0e540553178f9cad4d.png s=0.134  acc=1  [Pleural Effusion 0.84]
+    eea459fdf4b72989a21ac94125a64f0e.png s=0.135  acc=1  [Pleural Effusion 0.84]
+    13ceff5f3d113919c224c8b42d3c2411.png s=0.151  acc=1  [Pleural Effusion 0.83]
+    82624b37dc4d0169f3fe6fd87dcb5208.png s=0.160  acc=1  [Pleural Effusion 0.83]
+    5ffa2d8c4717aa06a6cdec9f74e775c9.png s=0.147  acc=1  [Pleural Effusion 0.83]
+    21cf533a9fe77bdbee21babd427a0d1f.png s=0.162  acc=1  [Pleural Effusion 0.82]
+    25e99dd3d0a8e45529b0c04f28a31313.png s=0.162  acc=1  [Pleural Effusion 0.82]
+
+[fig] CHOSEN  0f81902a673f0d826b55ea9dc9da297b.png
+      s(x)=0.133  (<= q_site 0.530  => accepted=1);  top concept = Pleural Effusion
+      A = 1 - p(Normal) = 0.877;  max anchor m = 0.848
+[fig] REAL calibrated concept probabilities p_k (paste these into the figure bars):
+      Pleural Effusion   0.848
+      Infiltration       0.293
+      Atelectasis        0.155
+      Pleural Thickening 0.132
+      Normal             0.123
+      Consolidation      0.071
+      Nodule             0.043
+      Mass               0.029
+      Cardiomegaly       0.004
+
+[fig] wrote experiments/results\fig_example/fig_ex_cxr.png  and  fig_ex_concepts.json
+C:\paper6_code\.venv310\lib\site-packages\transformers\tokenization_utils_base.py:1601: FutureWarning: `clean_up_tokenization_spaces` was not set. It will be set to `True` by default. This behavior will be depracted in transformers v4.45, and will be then set to `False` by default. For more details check this issue: https://github.com/huggingface/transformers/issues/31884
+  warnings.warn(
+[fig] wrote experiments/results\fig_example/fig_ex_saliency.png  (concept-conditioned occlusion, Pleural Effusion)

@@ -1,0 +1,4 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s14_concept_saliency --config configs/vindr.yaml
+C:\paper6_code\.venv310\lib\site-packages\transformers\tokenization_utils_base.py:1601: FutureWarning: `clean_up_tokenization_spaces` was not set. It will be set to `True` by default. This behavior will be depracted in transformers v4.45, and will be then set to `False` by default. For more details check this issue: https://github.com/huggingface/transformers/issues/31884
+  warnings.warn(
+[s14] wrote experiments/results\fig3b_concept_saliency.png | q=0.536 | deferred pool=105

@@ -1,0 +1,69 @@
+# CXR-LT 2026 config (multi-center PadChest+NIH; radiologist-annotated dev/test).
+# Confirm the data.* column names against the downloaded label CSV header, then build the
+# manifest with scripts/build_manifest_cxrlt.py.
+seed: 42
+
+paths:
+  raw: data/raw
+  processed: data/processed_cxrlt
+  concepts: data/concepts
+  embeddings: data/embeddings_cxrlt
+  results: experiments/results
+
+data:
+  dataset: CXR-LT-2026
+  manifest: data/raw/cxrlt2026/labels.csv     # built by build_manifest_cxrlt.py
+  image_root: data/raw/cxrlt2026/images
+  frontal_only: true
+  projections_keep: [PA, AP]
+  id_col: dicom_id                            # CXR-LT image identifier (confirm)
+  patient_col: patient_id                     # from PadChest metadata (confirm)
+  projection_col: projection                  # from PadChest metadata (confirm)
+  split_col: split                            # official CXR-LT split if present (confirm)
+  site_col: site                              # PadChest vs NIH — the multi-HOSPITAL axis for E5
+  image_size: 224
+  num_workers: 8
+  prefetch_factor: 2
+
+splits:
+  fractions: {train: 0.70, calib: 0.10, val: 0.10, test: 0.10}
+  calib_from_train: true
+
+concepts:
+  bank: data/concepts/cxrlt2026_concepts.yaml   # real 30 seen + 6 unseen
+  prompt_ensemble: true
+  negatives: true
+
+model:
+  encoder: biomedclip
+  hf_id: hf-hub:microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224
+  embed_dim: 512
+  freeze: true
+
+calibrate:
+  method: platt
+  max_iter: 200
+
+valve:
+  abnormality_prompt: "no acute cardiopulmonary abnormality"
+  use_vacuity: false
+
+conformal:
+  alpha_flag: 0.05
+  alpha_risk: 0.10
+  shift_robust: false
+
+ood:
+  baselines: [msp, jointenergy, mahalanobis, knn, mcm, neglabel, emptyset]
+  knn_k: 50
+
+eval:
+  bootstrap: 1000
+  fpr_at_tpr: 0.95
+  seeds: [0, 1, 2]
+
+compute:
+  device: cuda
+  amp: true
+  pin_memory: true
+  batch_size: 512

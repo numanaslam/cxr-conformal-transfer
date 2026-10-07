@@ -1,0 +1,44 @@
+# OV-CBMR concept bank — REAL CXR-LT 2026 classes (from arXiv 2604.15555 overview).
+# 30 seen (Task 1) + 6 unseen/OOD (Task 2). `display` = phrase inserted into prompt templates.
+# NOTE: `name` must match the label CSV column names exactly — confirm against the downloaded
+# CXR-LT label file (paste the header) and adjust casing/spacing if the release differs.
+
+known:      # Task 1 — 30 seen classes = the active vocabulary V
+  - {name: Alveolar Pattern,            display: an alveolar pattern}
+  - {name: Aortic Atheromatosis,        display: aortic atheromatosis}
+  - {name: Aortic Elongation,           display: aortic elongation}
+  - {name: Atelectasis,                 display: atelectasis}
+  - {name: Azygos Lobe,                 display: an azygos lobe}
+  - {name: Bronchiectasis,              display: bronchiectasis}
+  - {name: Cardiomegaly,                display: cardiomegaly}
+  - {name: Calcified Densities,         display: calcified densities}
+  - {name: Central Venous Catheter,     display: a central venous catheter}
+  - {name: Emphysema,                   display: emphysema}
+  - {name: Fracture,                    display: a fracture}
+  - {name: Hemidiaphragm Elevation,     display: hemidiaphragm elevation}
+  - {name: Hernia,                      display: a hiatal hernia}
+  - {name: Hydropneumothorax,           display: a hydropneumothorax}
+  - {name: Hyperinflated Lung,          display: a hyperinflated lung}
+  - {name: Hypoexpansion,               display: lung hypoexpansion}
+  - {name: Interstitial Pattern,        display: an interstitial pattern}
+  - {name: Kyphosis,                    display: kyphosis}
+  - {name: Mass,                        display: a pulmonary mass}
+  - {name: Nodule,                      display: a pulmonary nodule}
+  - {name: Normal,                      display: no finding}
+  - {name: Pleural Effusion,            display: a pleural effusion}
+  - {name: Pleural Thickening,          display: pleural thickening}
+  - {name: Pneumothorax,                display: a pneumothorax}
+  - {name: Pneumoperitoneum,            display: pneumoperitoneum}
+  - {name: Sternotomy,                  display: a sternotomy}
+  - {name: Subcutaneous Emphysema,      display: subcutaneous emphysema}
+  - {name: Support Devices,             display: a support device}
+  - {name: Vascular Hilar Enlargement,  display: vascular hilar enlargement}
+  - {name: Vertebral Degenerative Changes, display: vertebral degenerative changes}
+
+unseen:     # Task 2 — 6 OOD classes, strictly excluded from training
+  - {name: Adenopathy,   display: adenopathy}
+  - {name: Bulla,        display: a bulla}
+  - {name: Goiter,       display: a goiter}
+  - {name: Infarction,   display: a pulmonary infarction}
+  - {name: Osteopenia,   display: osteopenia}
+  - {name: Scoliosis,    display: scoliosis}

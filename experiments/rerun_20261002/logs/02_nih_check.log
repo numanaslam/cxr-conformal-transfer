@@ -1,0 +1,11 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe scripts/s00_check_data.py --manifest data/raw/nih/labels.csv --image-root data/raw/nih/images
+[s00] rows=112120  columns=19
+[s00] required columns present: ['image_id', 'patient_id', 'projection']
+[s00] projections: {'PA': 67310, 'AP': 44810}
+[s00] frontal (PA/AP) = 112120/112120 (100.0%)
+[s00] known concept columns:  15/30 present
+[s00] unseen concept columns: 0/6 present
+      NOTE: edit data/concepts/cxrlt2026_concepts.yaml to the official CXR-LT class names
+[s00] unique patients: 30805
+[s00] image files found: 50/50 sampled under data/raw/nih/images
+[s00] review 1 warning(s) above before s01_prepare_cxrlt

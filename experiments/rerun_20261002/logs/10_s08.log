@@ -1,0 +1,5 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s08_selective --config configs/nih.yaml
+[s08] abnormal-vs-normal | tau*=0.449 | test AUROC=0.697 | full error (no abstention)=0.343 | AURC=0.3222 (lower=better)
+[s08] CRC @ alpha=0.1: lambda=0.1544 | coverage=0.34 | accept&error rate=0.108 (<= 0.1? NO)
+[s08] selective error on accepted=0.319  vs  full error=0.343  (abstained 66% of cases)
+[s08] figure -> experiments/results\selective_risk_coverage.png

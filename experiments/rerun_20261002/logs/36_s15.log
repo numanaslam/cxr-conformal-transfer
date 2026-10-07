@@ -1,0 +1,25 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s15_localization --config configs/vindr.yaml --boxes data/raw/vindr/vinbigdata/train.csv --max-images 1500
+[s15] VinDr test images with usable box+dims: 2013 (using 1500; grid 14x14, boot 1000)
+C:\paper6_code\.venv310\lib\site-packages\transformers\tokenization_utils_base.py:1601: FutureWarning: `clean_up_tokenization_spaces` was not set. It will be set to `True` by default. This behavior will be depracted in transformers v4.45, and will be then set to `False` by default. For more details check this issue: https://github.com/huggingface/transformers/issues/31884
+  warnings.warn(
+
+[s15] pointing game over 3050 (image,concept) pairs, 1500 images
+  concept-conditioned : 0.190 [0.176,0.205]   (occlusion on p(concept))
+  concept-agnostic    : 0.155 [0.140,0.171]   (occlusion on abnormality A=1-p(Normal))
+  random-point null   : 0.081
+  specificity lift (conditioned - agnostic): +0.035
+
+    concept               hit           95% CI   null  agnos     n  sig
+    Consolidation       0.492  [0.400,0.577]  0.097  0.215   130  *
+    Infiltration        0.349  [0.284,0.409]  0.112  0.216   232  *
+    Atelectasis         0.286  [0.190,0.397]  0.106  0.206    63  *
+    Pleural Effusion    0.273  [0.229,0.319]  0.082  0.216   385  *
+    Cardiomegaly        0.206  [0.179,0.230]  0.121  0.127   861  *
+    Mass                0.157  [0.119,0.199]  0.049  0.109   312  *
+    Nodule              0.125  [0.087,0.163]  0.049  0.109   312  *
+    Pleural Thickening  0.062  [0.046,0.079]  0.048  0.163   755   
+
+[s15] 7/8 concepts individually clear their own null (95% CI lower bound > null).
+       Bonferroni: with 8 concepts, ~99.4% CIs give family-wise control; treat single-concept significance cautiously at small n.
+
+[s15] wrote experiments/results\s15_localization.json

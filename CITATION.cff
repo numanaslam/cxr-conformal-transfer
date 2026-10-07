@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this code or these results, please cite the article and this archive."
+title: "Code and results for \"Cross-Site Transfer of Conformal Abstention Guarantees in Interpretable Chest X-ray Concept Models\""
+type: software
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/OWNER/cxr-conformal-transfer"
+authors:
+  - family-names: Aslam
+    given-names: Numan
+    affiliation: "Department of Computer Sciences, University of Central Punjab, Lahore, Pakistan"
+    orcid: "https://orcid.org/0009-0007-7591-0577"
+  - family-names: Mustafa
+    given-names: Ghulam
+    affiliation: "Department of Computer Sciences, University of Central Punjab, Lahore, Pakistan"
+  - family-names: Qureshi
+    given-names: Adnan N.
+    affiliation: "Department of Computer Sciences, Newman University, Birmingham, United Kingdom"
+  - family-names: Rehman
+    given-names: Zia Ul
+    affiliation: "Government College University, Lahore, Pakistan"
+  - family-names: Shah
+    given-names: Asghar Ali
+    affiliation: "Department of Computer Science, Kateb University, Kabul, Afghanistan"
+keywords:
+  - conformal prediction
+  - selective prediction
+  - concept-based models
+  - chest radiography
+  - distribution shift
+  - uncertainty quantification

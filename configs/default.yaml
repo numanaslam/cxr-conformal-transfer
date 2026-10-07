@@ -1,0 +1,66 @@
+# OV-CBMR configuration. Edit paths + data columns for your server. See SERVER_SETUP.md.
+seed: 42
+
+paths:
+  raw: data/raw
+  processed: data/processed
+  concepts: data/concepts
+  embeddings: data/embeddings
+  results: experiments/results
+
+data:
+  dataset: CXR-LT-2026                 # multi-center PadChest + NIH (protocol §4.1)
+  manifest: data/raw/cxrlt2026/labels.csv
+  image_root: data/raw/cxrlt2026/images
+  frontal_only: true                   # drop lateral / AP-horizontal / pediatric (projection confounder)
+  projections_keep: [PA, AP]
+  id_col: image_id
+  patient_col: patient_id
+  projection_col: projection
+  split_col: split                     # use official CXR-LT split if present, else generated
+  image_size: 224                      # BiomedCLIP ViT-B/16-224
+  num_workers: 8                       # feed the GPU (8-12); 0 on Windows only if spawn hangs
+  prefetch_factor: 2                   # batches prefetched per worker
+
+splits:                                # used when official split absent, and to carve calib
+  fractions: {train: 0.70, calib: 0.10, val: 0.10, test: 0.10}
+  calib_from_train: true               # carve conformal-calibration split out of official train
+
+concepts:
+  bank: default                        # 'default' (built-in) | data/concepts/cxrlt2026_concepts.yaml
+  prompt_ensemble: true                # average >=5 prompts/concept (protocol §5)
+  negatives: true                      # include absence templates
+
+model:
+  encoder: biomedclip                  # frozen vision-language encoder
+  hf_id: hf-hub:microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224
+  embed_dim: 512
+  freeze: true
+
+calibrate:
+  method: platt                        # per-concept scale+bias (fixes CLIP-temp sigmoid saturation, §5)
+  max_iter: 200
+
+valve:                                 # §2.4 test-time open-set decision
+  abnormality_prompt: "no acute cardiopulmonary abnormality"
+  use_vacuity: false                   # true only if an evidential backbone is enabled (ablation)
+
+conformal:
+  alpha_flag: 0.05                     # G1: P(false unanchored flag on known finding) <= alpha
+  alpha_risk: 0.10                     # G2: CRC selective-error ceiling
+  shift_robust: false                  # STRETCH: weighted conformal under multi-center shift (protocol stretch-goal)
+
+ood:
+  baselines: [msp, jointenergy, mahalanobis, knn, mcm, neglabel, emptyset]
+  knn_k: 50
+
+eval:
+  bootstrap: 1000                      # bootstrap CIs over test patients
+  fpr_at_tpr: 0.95
+  seeds: [0, 1, 2]
+
+compute:
+  device: cuda                         # cuda | cpu
+  amp: true                            # fp16 autocast
+  pin_memory: true                     # faster host->device copies
+  batch_size: 512                      # ViT-B/16@224 fp16; lower if VRAM OOMs, raise to 1024 if free

@@ -1,0 +1,6 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe scripts/build_manifest_vindr.py --csv data/raw/vindr/vinbigdata/train.csv --image-root data/raw/vindr/vinbigdata/train --out data/raw/vindr/labels.csv
+[vindr] 15000 unique images in data/raw/vindr/vinbigdata/train.csv
+[vindr] wrote 15000 images (0 skipped — no PNG under data/raw/vindr/vinbigdata/train) -> data/raw/vindr/labels.csv
+[vindr] abnormal (not No-finding): 4394 (29.3%)
+[vindr] mapped-known positives: { Atelectasis:186, Cardiomegaly:2300, Pleural Effusion:1032, Infiltration:613, Mass:826, Nodule:826, Consolidation:353, Pleural Thickening:1981, Normal:10606 }
+[vindr] next: s01 -> s02 with configs/vindr.yaml, then s12_cross_hospital

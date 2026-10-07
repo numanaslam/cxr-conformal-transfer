@@ -1,0 +1,47 @@
+{
+  "n_images": 7489,
+  "per_concept": {
+    "Atelectasis": {
+      "densenet_auroc": 0.7012801899712574,
+      "ours_cbm_auroc": null,
+      "n_pos": 92
+    },
+    "Cardiomegaly": {
+      "densenet_auroc": 0.7584627032466906,
+      "ours_cbm_auroc": null,
+      "n_pos": 1153
+    },
+    "Consolidation": {
+      "densenet_auroc": 0.805426970806178,
+      "ours_cbm_auroc": null,
+      "n_pos": 184
+    },
+    "Infiltration": {
+      "densenet_auroc": 0.7043105113929966,
+      "ours_cbm_auroc": null,
+      "n_pos": 310
+    },
+    "Mass": {
+      "densenet_auroc": 0.7386914213313902,
+      "ours_cbm_auroc": null,
+      "n_pos": 416
+    },
+    "Nodule": {
+      "densenet_auroc": 0.7161362888666544,
+      "ours_cbm_auroc": null,
+      "n_pos": 416
+    },
+    "Pleural Effusion": {
+      "densenet_auroc": 0.8422511231056216,
+      "ours_cbm_auroc": null,
+      "n_pos": 520
+    },
+    "Pleural Thickening": {
+      "densenet_auroc": 0.7884471777390616,
+      "ours_cbm_auroc": null,
+      "n_pos": 1003
+    }
+  },
+  "mean_densenet": null,
+  "mean_ours": null
+}

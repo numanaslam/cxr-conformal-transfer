@@ -1,0 +1,72 @@
+{
+  "alpha": 0.05,
+  "groupings": {
+    "view": {
+      "rows": [
+        {
+          "group": "AP",
+          "n_test": 2527,
+          "naive_logo_ffr": 0.016224772457459437,
+          "groupcond_ffr": 0.06371191135734072
+        },
+        {
+          "group": "PA",
+          "n_test": 2395,
+          "naive_logo_ffr": 0.09102296450939457,
+          "groupcond_ffr": 0.04509394572025052
+        }
+      ],
+      "max_dev_naive_logo": 0.04102296450939456,
+      "max_dev_groupcond": 0.01371191135734072
+    },
+    "sex": {
+      "rows": [
+        {
+          "group": "F",
+          "n_test": 2097,
+          "naive_logo_ffr": 0.039580352885073916,
+          "groupcond_ffr": 0.05007153075822604
+        },
+        {
+          "group": "M",
+          "n_test": 2825,
+          "naive_logo_ffr": 0.049557522123893805,
+          "groupcond_ffr": 0.04106194690265487
+        }
+      ],
+      "max_dev_naive_logo": 0.010419647114926087,
+      "max_dev_groupcond": 0.008938053097345133
+    },
+    "age_band": {
+      "rows": [
+        {
+          "group": "40-59",
+          "n_test": 2287,
+          "naive_logo_ffr": 0.05378224748578924,
+          "groupcond_ffr": 0.03804110188019239
+        },
+        {
+          "group": "60-79",
+          "n_test": 1173,
+          "naive_logo_ffr": 0.05115089514066496,
+          "groupcond_ffr": 0.05200341005967604
+        },
+        {
+          "group": "80+",
+          "n_test": 106,
+          "naive_logo_ffr": 0.09433962264150944,
+          "groupcond_ffr": 0.0
+        },
+        {
+          "group": "<40",
+          "n_test": 1356,
+          "naive_logo_ffr": 0.022861356932153392,
+          "groupcond_ffr": 0.03908554572271387
+        }
+      ],
+      "max_dev_naive_logo": 0.04433962264150944,
+      "max_dev_groupcond": 0.05
+    }
+  },
+  "note": "NIH observed-group proxy for multi-hospital E5 (needs CXR-LT)"
+}

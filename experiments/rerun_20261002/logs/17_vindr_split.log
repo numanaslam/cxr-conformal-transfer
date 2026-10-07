@@ -1,0 +1,9 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s01_prepare_cxrlt --config configs/vindr.yaml
+[s01] read 15000 rows from data/raw/vindr/labels.csv
+[s01] frontal-only -> 15000 rows
+[s01] active vocabulary |V|=9 | unseen (Task-2)=6
+[s01] assigned patient-level splits {'train': 0.0, 'calib': 0.5, 'val': 0.0, 'test': 0.5}
+[s01] no-leakage check: PASS
+[s01] splits: {'calib': {'images': 7511, 'patients': 7511}, 'test': {'images': 7489, 'patients': 7489}}
+[s01] unanchored (Task-2 positives in test): 0 images
+[s01] wrote index.json + meta.json under data/processed_vindr

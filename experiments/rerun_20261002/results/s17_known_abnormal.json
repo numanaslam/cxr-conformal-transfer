@@ -1,0 +1,140 @@
+{
+  "alpha": 0.05,
+  "composition": {
+    "nih_calib": {
+      "normal": 5705,
+      "invocab": 4430,
+      "oov": 576
+    },
+    "vindr_calib": {
+      "normal": 5337,
+      "invocab": 1980,
+      "oov": 194
+    },
+    "vindr_test": {
+      "normal": 5269,
+      "invocab": 2013,
+      "oov": 207
+    }
+  },
+  "any-abnormal": {
+    "n_vindr_test": 2220,
+    "naive": {
+      "rate": 0.0472972972972973,
+      "ci": [
+        0.03873873873873874,
+        0.05630630630630631
+      ],
+      "q": 0.5355627385415687
+    },
+    "groupcond": {
+      "rate": 0.06036036036036036,
+      "ci": [
+        0.0509009009009009,
+        0.07027027027027027
+      ],
+      "q": 0.5287326854750678
+    }
+  },
+  "in-vocab-abnormal": {
+    "n_vindr_test": 2013,
+    "naive": {
+      "rate": 0.057128663686040734,
+      "ci": [
+        0.04719324391455539,
+        0.06805762543467461
+      ],
+      "q": 0.5308797045700484
+    },
+    "groupcond": {
+      "rate": 0.058618976651763535,
+      "ci": [
+        0.04868355688027819,
+        0.06954793840039741
+      ],
+      "q": 0.5302703702870918
+    }
+  },
+  "oov_correct_flag_rate": {
+    "rate": 0.033816425120772944,
+    "n": 207,
+    "q_ref": 0.5308797045700484
+  },
+  "vindr_class_map": [
+    {
+      "vindr_class": "No finding",
+      "mapped_to": "Normal",
+      "box_rows": 31818
+    },
+    {
+      "vindr_class": "Aortic enlargement",
+      "mapped_to": "OOV (abnormal, unanchored)",
+      "box_rows": 7162
+    },
+    {
+      "vindr_class": "Cardiomegaly",
+      "mapped_to": "Cardiomegaly",
+      "box_rows": 5427
+    },
+    {
+      "vindr_class": "Pleural thickening",
+      "mapped_to": "Pleural Thickening",
+      "box_rows": 4842
+    },
+    {
+      "vindr_class": "Pulmonary fibrosis",
+      "mapped_to": "OOV (abnormal, unanchored)",
+      "box_rows": 4655
+    },
+    {
+      "vindr_class": "Nodule/Mass",
+      "mapped_to": "Nodule+Mass",
+      "box_rows": 2580
+    },
+    {
+      "vindr_class": "Lung Opacity",
+      "mapped_to": "OOV (abnormal, unanchored)",
+      "box_rows": 2483
+    },
+    {
+      "vindr_class": "Pleural effusion",
+      "mapped_to": "Pleural Effusion",
+      "box_rows": 2476
+    },
+    {
+      "vindr_class": "Other lesion",
+      "mapped_to": "OOV (abnormal, unanchored)",
+      "box_rows": 2203
+    },
+    {
+      "vindr_class": "Infiltration",
+      "mapped_to": "Infiltration",
+      "box_rows": 1247
+    },
+    {
+      "vindr_class": "ILD",
+      "mapped_to": "OOV (abnormal, unanchored)",
+      "box_rows": 1000
+    },
+    {
+      "vindr_class": "Calcification",
+      "mapped_to": "OOV (abnormal, unanchored)",
+      "box_rows": 960
+    },
+    {
+      "vindr_class": "Consolidation",
+      "mapped_to": "Consolidation",
+      "box_rows": 556
+    },
+    {
+      "vindr_class": "Atelectasis",
+      "mapped_to": "Atelectasis",
+      "box_rows": 279
+    },
+    {
+      "vindr_class": "Pneumothorax",
+      "mapped_to": "OOV (abnormal, unanchored)",
+      "box_rows": 226
+    }
+  ]
+}

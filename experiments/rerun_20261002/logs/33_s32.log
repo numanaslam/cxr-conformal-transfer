@@ -1,0 +1,14 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s32_mlp_comparator --config configs/vindr.yaml
+[s32] fitting linear and MLP(256) abnormality heads on 78607 NIH train embeddings...
+
+predictor            AUROC NIH AUROC VinDr  accept  conf-err
+linear head              0.760       0.803    0.26     0.030
+MLP head (256)           0.765       0.841    0.33     0.023
+CBM  1-p(Normal)         0.760       0.803    0.26     0.030
+
+AUROC difference vs the bottleneck (comparator - CBM), 95% clustered paired bootstrap, 500 resamples
+  linear head          NIH +0.000 [+0.000,+0.000]   VinDr +0.000 [+0.000,+0.000]
+  MLP head (256)       NIH +0.005 [+0.001,+0.009]   VinDr +0.038 [+0.032,+0.045]
+
+[s32] Read: an interval inside a stated margin (say +/-0.01 AUROC) supports 'no loss beyond the margin'; an MLP interval clearly above zero is the cost of the linear concept layer and should be reported as such.
+[s32] wrote experiments/results\s32_mlp_comparator.json

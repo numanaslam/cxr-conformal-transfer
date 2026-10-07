@@ -1,0 +1,15 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s18_sample_efficiency --config configs/vindr.yaml
+[s18] VinDr in-vocab known-abnormal: calib=1980, test=2013 | alpha=0.05 | K=200
+
+ m (calib)  mean ffr     std    p2.5   p97.5  %<=a+.01
+        25     0.045   0.045   0.002   0.172      0.77
+        50     0.045   0.032   0.004   0.123      0.72
+       100     0.062   0.024   0.026   0.116      0.52
+       200     0.059   0.018   0.032   0.111      0.61
+       400     0.060   0.011   0.045   0.085      0.51
+       800     0.059   0.007   0.048   0.077      0.54
+      1500     0.059   0.003   0.055   0.067      0.56
+      1980     0.059   0.000   0.059   0.059      1.00
+
+[s18] smallest calibration budget with a tight guarantee (95% band <= a+0.02, mean within .01 of a): 1500 in-vocab cases
+[s18] figure -> experiments/results\fig_sample_efficiency.png

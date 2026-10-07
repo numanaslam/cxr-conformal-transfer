@@ -1,0 +1,12 @@
+[project]
+name = "ovcbmr"
+version = "0.1.0"
+description = "Open-Vocabulary Concept Bottleneck with Calibrated Concept-Level Rejection (OV-CBMR) — test-time open-set safety valve for open-world chest X-ray"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+include = ["ovcbmr*"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]

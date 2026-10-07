@@ -1,0 +1,57 @@
+# VinDr-CXR (Vietnam) config for the cross-hospital pilot vs NIH (US).
+# Uses the SAME concept bank as NIH so the NIH-trained heads (concept_heads.json) apply directly.
+seed: 42
+
+paths:
+  raw: data/raw
+  processed: data/processed_vindr
+  concepts: data/concepts
+  embeddings: data/embeddings_vindr
+  results: experiments/results
+
+# where the NIH-trained artifacts live (shared predictor for the pilot)
+cross_hospital:
+  nih_processed: data/processed_nih
+  nih_embeddings: data/embeddings_nih
+
+data:
+  dataset: VinDr-CXR
+  manifest: data/raw/vindr/labels.csv                 # built by build_manifest_vindr.py
+  image_root: data/raw/vindr/vinbigdata/train         # resized PNG dir (awsaf49 layout)
+  frontal_only: true
+  projections_keep: [PA, AP]
+  id_col: image_id
+  patient_col: patient_id
+  projection_col: projection
+  split_col: split
+  site_col: site
+  image_size: 224
+  num_workers: 8
+  prefetch_factor: 2
+
+splits:
+  fractions: {train: 0.0, calib: 0.5, val: 0.0, test: 0.5}   # deploy set: split into calib/test
+  calib_from_train: false
+
+concepts:
+  bank: data/concepts/nih_concepts.yaml       # SAME 9 known + 6 unseen as NIH
+  prompt_ensemble: true
+  negatives: true
+
+model:
+  encoder: biomedclip
+  hf_id: hf-hub:microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224
+  embed_dim: 512
+  freeze: true
+
+calibrate: {method: platt, max_iter: 200}
+valve: {abnormality_prompt: "no acute cardiopulmonary abnormality", use_vacuity: false}
+conformal: {alpha_flag: 0.05, alpha_risk: 0.10, shift_robust: false}
+ood: {baselines: [msp, jointenergy, mahalanobis, knn, mcm, neglabel, emptyset], knn_k: 50}
+eval: {bootstrap: 1000, fpr_at_tpr: 0.95, seeds: [0, 1, 2]}
+
+compute:
+  device: cuda
+  amp: true
+  pin_memory: true
+  batch_size: 512

@@ -1,0 +1,30 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s23_review_addenda --config configs/vindr.yaml
+==========================================================================
+(A) G1 false-deferral, IN-VOCAB known-abnormal (alpha=0.05)   [review #10]
+  NIH ->VinDr  naive      : 0.057 [0.047,0.068]   (sanity, expect ~0.085)
+  NIH ->VinDr  group-cond : 0.059 [0.049,0.070]   (sanity, expect ~0.053)
+  VinDr->NIH   naive      : 0.046 [0.036,0.057]
+  VinDr->NIH   group-cond : 0.045 [0.036,0.056]
+  n in-vocab: NIH-cal=4430 NIH-test=4922 VinDr-cal=1980 VinDr-test=2013
+==========================================================================
+(D) Weighted (importance-weighted) conformal, NIH->VinDr in-vocab G1   [review #11]
+  domain-classifier AUROC : 0.992   (0.5 = no shift, 1.0 = fully separable)
+  weights: clipped 95th pct; Kish ESS = 2434 of 4430 NIH-cal (55%)
+  VinDr false-deferral    :   naive 0.057 (|dev| 0.007) | weighted 0.064 (|dev| 0.014) | group-cond 0.059 (|dev| 0.009)
+==========================================================================
+(B) G2 accepted sensitivity/specificity (alpha_risk=0.1)   [review #5]
+  setting                   accept acc|norm  acc|abn  sens|acc  spec|acc   FN|acc
+  NIH  (cal NIH)              0.50     0.45     0.57     0.863     0.666    0.071
+  VinDr naive (cal NIH)       0.26     0.23     0.33     0.925     0.860    0.028
+  VinDr site  (cal VinDr)     0.57     0.58     0.54     0.779     0.874    0.063
+==========================================================================
+(C) G2 sample-size: local VinDr calib m -> acceptance + accepted-error, K=200   [review #7]
+         m      acceptance [5th,95th]  accepted-error [5th,95th]
+       100       0.51 [0.22,0.72]              0.088 [0.052,0.141]
+       200       0.51 [0.28,0.71]              0.088 [0.063,0.122]
+       400       0.51 [0.31,0.68]              0.088 [0.067,0.110]
+       800       0.53 [0.37,0.63]              0.087 [0.074,0.102]
+      1500       0.53 [0.38,0.64]              0.087 [0.077,0.099]
+      full       0.57  (site-calibrated, full)      0.087
+==========================================================================
+[s23] done -- paste the four blocks (A)(D)(B)(C) above.

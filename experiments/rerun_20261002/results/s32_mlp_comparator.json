@@ -1,0 +1,50 @@
+{
+  "alpha_risk": 0.1,
+  "n_boot": 500,
+  "methods": {
+    "linear head": {
+      "auroc_nih": 0.7597575023264623,
+      "auroc_vindr": 0.8029231831945819,
+      "nih_to_vindr_accept": 0.26211777273334225,
+      "nih_to_vindr_confident_error": 0.030177593804246228
+    },
+    "MLP head (256)": {
+      "auroc_nih": 0.7646127057786855,
+      "auroc_vindr": 0.8412418634234918,
+      "nih_to_vindr_accept": 0.32594471892108423,
+      "nih_to_vindr_confident_error": 0.02310054746962211
+    },
+    "CBM  1-p(Normal)": {
+      "auroc_nih": 0.7597575023264623,
+      "auroc_vindr": 0.8029231831945819,
+      "nih_to_vindr_accept": 0.2622513019094672,
+      "nih_to_vindr_confident_error": 0.030444652156496194
+    }
+  },
+  "differences_vs_cbm": {
+    "linear head": {
+      "nih": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "vindr": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "MLP head (256)": {
+      "nih": [
+        0.0048552034522231224,
+        0.0009986971111264342,
+        0.008620360352665335
+      ],
+      "vindr": [
+        0.03831868022890994,
+        0.03161558313154078,
+        0.04529772205352578
+      ]
+    }
+  }
+}

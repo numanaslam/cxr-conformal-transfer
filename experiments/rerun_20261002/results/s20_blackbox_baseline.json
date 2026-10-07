@@ -1,0 +1,27 @@
+{
+  "alpha_risk": 0.1,
+  "methods": {
+    "black-box direct": {
+      "auroc_nih": 0.7597575023264623,
+      "auroc_vindr": 0.8029231831945819,
+      "nih_to_vindr_coverage": 0.26211777273334225,
+      "accept_error": 0.030177593804246228,
+      "accept_error_ci": [
+        0.02617171852049673,
+        0.03431699826412071
+      ],
+      "interpretability": "heatmap only"
+    },
+    "CBM  1-p(Normal)": {
+      "auroc_nih": 0.7597575023264623,
+      "auroc_vindr": 0.8029231831945819,
+      "nih_to_vindr_coverage": 0.2622513019094672,
+      "accept_error": 0.030444652156496194,
+      "accept_error_ci": [
+        0.026305247696621712,
+        0.03458405661637068
+      ],
+      "interpretability": "named concepts"
+    }
+  }
+}

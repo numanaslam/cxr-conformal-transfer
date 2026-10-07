@@ -1,0 +1,9 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.count_manifest --config configs/vindr.yaml
+[manifest] dataset=VinDr-CXR  frontal_only=True
+           embeddings=data/embeddings_vindr
+  calib :    7511 images
+  test  :    7489 images
+  TOTAL :   15000 images (post-filter, embedded)
+  processed index: 15000 items, 15000 unique patients
+    calib :   7511 unique patients
+    test  :   7489 unique patients

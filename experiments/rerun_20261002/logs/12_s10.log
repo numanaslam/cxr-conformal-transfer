@@ -1,0 +1,31 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s10_interpretability --config configs/nih.yaml
+concept                AUROC    ECE
+Atelectasis            0.760  0.007
+Cardiomegaly           0.839  0.004
+Pleural Effusion       0.845  0.010
+Infiltration           0.691  0.008
+Mass                   0.789  0.006
+Nodule                 0.690  0.004
+Consolidation          0.787  0.004
+Pleural Thickening     0.744  0.002
+Normal                 0.760  0.026
+
+[s10] abstention attribution (most-uncertain 2373 images = bottom 20%):
+driver concept        count   share
+Infiltration           1257   53.0%
+Pleural Effusion        731   30.8%
+Atelectasis             200    8.4%
+Mass                    114    4.8%
+Cardiomegaly             56    2.4%
+Nodule                   12    0.5%
+Pleural Thickening        3    0.1%
+
+[s10] examples (most-uncertain images): id | driver concept (p) | true
+  00000116_032.png | Pleural Effusion (p=0.50) | true=0
+  00002300_047.png | Infiltration (p=0.50) | true=0
+  00012635_007.png | Infiltration (p=0.50) | true=0
+  00015069_000.png | Infiltration (p=0.50) | true=1
+  00022870_014.png | Infiltration (p=0.50) | true=1
+  00013615_046.png | Cardiomegaly (p=0.50) | true=0
+
+[s10] wrote experiments/results\s10_interpretability.json

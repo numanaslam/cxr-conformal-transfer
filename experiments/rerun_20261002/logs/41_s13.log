@@ -1,0 +1,3 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s13_figures --config configs/vindr.yaml
+[s13] wrote fig1_pipeline_shift.png, fig2_coverage.png, fig3_interpretability.png -> experiments/results
+[s13] q_nih=0.531 | VinDr false-flag @ α=0.05: 0.057 | deferred cases for Fig.3: 115

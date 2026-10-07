@@ -1,0 +1,12 @@
+{
+  "mean_concept_auroc": 0.7671375012439521,
+  "n_concepts": 9,
+  "abnormal_auroc": 0.7433221034479912,
+  "tau": 0.465,
+  "full_error": 0.3164460928938717,
+  "aurc": 0.26314781189158304,
+  "alpha": 0.1,
+  "coverage": 0.4401921942173143,
+  "accept_error_rate": 0.11295625052684818,
+  "selective_error": 0.2566066641133665
+}

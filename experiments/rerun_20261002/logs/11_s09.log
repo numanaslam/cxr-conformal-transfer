@@ -1,0 +1,16 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s09_train_heads --config configs/nih.yaml
+concept              pos_train   AUROC    ECE
+Atelectasis               8133   0.760  0.007
+Cardiomegaly              1976   0.839  0.004
+Pleural Effusion          9236   0.845  0.010
+Infiltration             13973   0.691  0.008
+Mass                      4097   0.789  0.006
+Nodule                    4506   0.690  0.004
+Consolidation             3211   0.787  0.004
+Pleural Thickening        2388   0.744  0.002
+Normal                   42386   0.760  0.026
+[s09] mean per-concept AUROC = 0.767 | mean ECE = 0.008  (K=9; heads Platt-calibrated)
+
+[s09] abnormal-vs-normal TRAINED head: AUROC=0.743  (zero-shot s08 was 0.693) | full error=0.316  (s08 was 0.334) | AURC=0.2631
+[s09] CRC @ alpha=0.1: coverage=0.44  (s08 was 0.33) | accept&error=0.113 (<= 0.1? NO) | selective error=0.257 vs full 0.316
+[s09] wrote concept_heads.json + s09_trained.json

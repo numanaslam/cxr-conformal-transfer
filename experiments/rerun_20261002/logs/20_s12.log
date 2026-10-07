@@ -1,0 +1,12 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s12_cross_hospital --config configs/vindr.yaml
+[s12] abnormal counts | NIH cal/test=5006/5472 VinDr cal/test=2174/2220 | alpha=0.05
+
+deploy on   naive(cross-hospital)  group-conditional  (target 0.05)
+VinDr                       0.047              0.060
+NIH                         0.052              0.042
+
+[s12] VERDICT:
+  naive cross-hospital stays <= alpha -> shift benign even across hospitals.
+  -> reframe to the honest workshop/short paper; skip the CXR-LT slog.
+  group-conditional restores exact coverage: NIH 0.042, VinDr 0.060 (~0.05)
+[s12] wrote experiments/results\s12_cross_hospital.json

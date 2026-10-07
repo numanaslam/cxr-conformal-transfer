@@ -1,0 +1,26 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s11_multigroup --config configs/nih.yaml
+[s11] known-abnormal: calib=4430 test=4922 | alpha=0.05
+[s11] LEAVE-ONE-GROUP-OUT: naive calibrates on the OTHER groups (deploy on unseen group g); group-conditional calibrates on g. Reproduces the E1 shift per group.
+
+[s11] grouping = view
+group       n_test  naive(LOGO)  groupcond  (target 0.05)
+AP            2527        0.016      0.064
+PA            2395        0.091      0.045
+  max|ffr-alpha|: naive(LOGO)=0.041  group-conditional=0.014  -> group-conditional tighter for every group
+
+[s11] grouping = sex
+group       n_test  naive(LOGO)  groupcond  (target 0.05)
+F             2097        0.040      0.050
+M             2825        0.050      0.041
+  max|ffr-alpha|: naive(LOGO)=0.010  group-conditional=0.009  -> group-conditional tighter for every group
+
+[s11] grouping = age_band
+group       n_test  naive(LOGO)  groupcond  (target 0.05)
+40-59         2287        0.054      0.038
+60-79         1173        0.051      0.052
+80+            106        0.094      0.000
+<40           1356        0.023      0.039
+  max|ffr-alpha|: naive(LOGO)=0.044  group-conditional=0.050  -> group-conditional not uniformly better (small groups?)
+
+[s11] wrote experiments/results\s11_multigroup.json
+[s11] NOTE: NIH observed-group proxy; true multi-HOSPITAL E5 needs CXR-LT/PadChest.

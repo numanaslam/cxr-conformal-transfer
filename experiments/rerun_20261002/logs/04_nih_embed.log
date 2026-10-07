@@ -1,0 +1,14 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s02_extract_embeddings --config configs/nih.yaml
+C:\paper6_code\.venv310\lib\site-packages\transformers\tokenization_utils_base.py:1601: FutureWarning: `clean_up_tokenization_spaces` was not set. It will be set to `True` by default. This behavior will be depracted in transformers v4.45, and will be then set to `False` by default. For more details check this issue: https://github.com/huggingface/transformers/issues/31884
+  warnings.warn(
+[s02] BiomedCLIP loaded on cuda
+[s02] cached concept_text.pt (K=9)
+[encode] 78607 imgs in 242s = 325 img/s
+[s02] cached train_img.pt  [(78607, 512)]
+[encode] 11863 imgs in 52s = 228 img/s
+[s02] cached test_img.pt  [(11863, 512)]
+[encode] 10939 imgs in 50s = 220 img/s
+[s02] cached val_img.pt  [(10939, 512)]
+[encode] 10711 imgs in 50s = 216 img/s
+[s02] cached calib_img.pt  [(10711, 512)]
+[s02] done -> data/embeddings_nih

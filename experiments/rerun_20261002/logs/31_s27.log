@@ -1,0 +1,20 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s27_weighted_sweep --config configs/vindr.yaml
+[s27] naive q=0.5309 ffr=0.057 (paper 0.085); target=0.05, group-cond ref 0.053
+
+     C  clip_q   ESS%  q_weighted  VinDr ffr
+  0.01    0.90     92      0.5294      0.062
+  0.01    0.95     91      0.5292      0.062
+  0.01    0.99     90      0.5290      0.062
+  0.01    1.00     90      0.5290      0.062
+   0.1    0.90     61      0.5284      0.063
+   0.1    0.95     55      0.5277      0.064
+   0.1    0.99     47      0.5275      0.064
+   0.1    1.00     41      0.5277      0.064
+   1.0    0.90     38      0.5288      0.063
+   1.0    0.95     29      0.5284      0.063
+   1.0    0.99     15      0.5288      0.062
+   1.0    1.00      6      0.5290      0.062
+
+[s27] quantile-alignment (label-free): shift=-0.0393 -> VinDr ffr=0.014
+[s27] Read: if ffr stays near 0.085 across the whole sweep, the failure is structural (near-disjoint support), not a clipping artifact; quantile alignment is the honest label-free comparator to group-conditional 0.053.
+[s27] wrote experiments/results\s27_weighted_sweep.json

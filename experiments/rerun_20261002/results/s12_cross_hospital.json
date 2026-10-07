@@ -1,0 +1,18 @@
+{
+  "alpha": 0.05,
+  "n": {
+    "nih_cal": 5006,
+    "nih_test": 5472,
+    "vindr_cal": 2174,
+    "vindr_test": 2220
+  },
+  "deploy_vindr": {
+    "naive_cross": 0.0472972972972973,
+    "groupcond": 0.06036036036036036
+  },
+  "deploy_nih": {
+    "naive_cross": 0.05226608187134503,
+    "groupcond": 0.041666666666666664
+  },
+  "naive_violates_alpha": false
+}

@@ -1,0 +1,8 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s12b_coverage_ci --config configs/vindr.yaml
+[s12b] alpha=0.05 | bootstrap=1000 (patient-clustered) | seed=42
+
+deploy on     test/pat           naive (cross)       group-conditional   target
+VinDr     2220/2220       0.047 [0.039,0.056]     0.060 [0.051,0.070]   0.05
+NIH       5472/1440       0.052 [0.041,0.065]     0.042 [0.032,0.053]   0.05
+
+[s12b] wrote experiments/results\s12b_coverage_ci.json

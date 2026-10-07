@@ -1,0 +1,9 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s01_prepare_cxrlt --config configs/nih.yaml
+[s01] read 112120 rows from data/raw/nih/labels.csv
+[s01] frontal-only -> 112120 rows
+[s01] active vocabulary |V|=9 | unseen (Task-2)=6
+[s01] assigned patient-level splits {'train': 0.7, 'calib': 0.1, 'val': 0.1, 'test': 0.1}
+[s01] no-leakage check: PASS
+[s01] splits: {'calib': {'images': 10711, 'patients': 2997}, 'test': {'images': 11863, 'patients': 3119}, 'train': {'images': 78607, 'patients': 21622}, 'val': {'images': 10939, 'patients': 3067}}
+[s01] unanchored (Task-2 positives in test): 1244 images
+[s01] wrote index.json + meta.json under data/processed_nih

@@ -1,0 +1,15 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s07_shift_demo --config configs/nih.yaml
+[s07] cal PA(train) : 17625 known-abnormal images
+[s07] ref AP(train) : 14926 known-abnormal images
+[s07] eval PA(test) : 2395 known-abnormal images
+[s07] eval AP(test) : 2527 known-abnormal images
+[s07] shift weights: min=0.001 med=0.058 max=0.7 | ESS=6455/17625 (36.6%) [OK]
+
+[s07] alpha=0.05  in-dist PA : naive_ffr=0.046  robust_ffr=0.028
+[s07] alpha=0.05  SHIFT   AP : naive_ffr=0.016  robust_ffr=0.006   (target 0.050)
+[s07] alpha=0.05  group-conditional AP (per-site calibration): ffr=0.047   (target 0.050)
+[s07] |ffr - alpha| on AP: naive=0.034 vs robust=0.044  ->  naive already near target on AP (PA->AP shift is mild here; CXR-LT cross-hospital is stronger)
+[s07] mean|ffr-alpha| over sweep (AP): naive=0.022  robust=0.054  group-conditional=0.002
+[s07] group-conditional gives ~EXACT per-site coverage; importance-weighting only partially corrects (residual = conditional shift)
+[s07] wrote experiments/results\s07_shift.json
+[s07] figure -> experiments/results\shift_coverage.png

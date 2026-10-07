@@ -1,0 +1,63 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s31_clean_protocol --config configs/vindr.yaml
+[s31] clean protocol: Platt + tau from NIH val (n=10939); q_hat + lambda from n=10711. VinDr tau/lambda halves 3754/3757. boot=1000
+
+=== [paper] G1 in-vocabulary false deferral (target 0.05) ===
+  NIH on-site    0.045 [0.036,0.056]  n=4922
+  NIH->VinDr     0.057 [0.047,0.068]  n=2013
+  VinDr on-site  0.059 [0.049,0.070]  n=2013
+  VinDr->NIH     0.046 [0.036,0.057]  n=4922
+
+=== [paper] G2 symmetric loss: controlled = P(accept AND error) (target 0.1) ===
+  setting         accept         controlled [CI]   ok  err|acc  miss|acc
+  NIH on-site       0.50     0.117 [0.107,0.126]   NO    0.232     0.071
+  NIH->VinDr        0.26     0.030 [0.026,0.035]  yes    0.116     0.028
+  VinDr on-site     0.57     0.087 [0.081,0.093]  yes    0.153     0.063
+  VinDr->NIH        0.75     0.187 [0.177,0.197]   NO    0.250     0.109
+
+=== [paper] G2 one-sided loss: controlled = P(accept AND miss) (target 0.1) ===
+  setting         accept         controlled [CI]   ok  err|acc  miss|acc
+  NIH on-site       0.81     0.089 [0.081,0.097]  yes    0.261     0.109
+  NIH->VinDr        0.67     0.044 [0.039,0.049]  yes    0.187     0.066
+  VinDr on-site     1.00     0.101 [0.094,0.108]   NO    0.258     0.101
+  VinDr->NIH        1.00     0.133 [0.123,0.144]   NO    0.291     0.133
+
+=== [paper] mean abnormal-concept calibration (source Platt) ===
+  NIH test   ECE 0.006  Brier 0.0606
+  VinDr test ECE 0.057  Brier 0.0616
+
+=== [clean] G1 in-vocabulary false deferral (target 0.05) ===
+  NIH on-site    0.046 [0.036,0.057]  n=4922
+  NIH->VinDr     0.055 [0.045,0.066]  n=2013
+  VinDr on-site  0.061 [0.051,0.072]  n=2013
+  VinDr->NIH     0.053 [0.042,0.064]  n=4922
+
+=== [clean] G2 symmetric loss: controlled = P(accept AND error) (target 0.1) ===
+  setting         accept         controlled [CI]   ok  err|acc  miss|acc
+  NIH on-site       0.50     0.116 [0.106,0.125]   NO    0.234     0.067
+  NIH->VinDr        0.25     0.031 [0.027,0.035]  yes    0.123     0.025
+  VinDr on-site     0.49     0.085 [0.079,0.092]  yes    0.176     0.038
+  VinDr->NIH        0.70     0.176 [0.166,0.186]   NO    0.252     0.084
+
+=== [clean] G2 one-sided loss: controlled = P(accept AND miss) (target 0.1) ===
+  setting         accept         controlled [CI]   ok  err|acc  miss|acc
+  NIH on-site       0.82     0.089 [0.081,0.097]  yes    0.263     0.108
+  NIH->VinDr        0.68     0.044 [0.039,0.049]  yes    0.196     0.064
+  VinDr on-site     1.00     0.079 [0.073,0.085]  yes    0.284     0.079
+  VinDr->NIH        1.00     0.117 [0.108,0.128]   NO    0.298     0.117
+
+=== [clean] mean abnormal-concept calibration (source Platt) ===
+  NIH test   ECE 0.006  Brier 0.0606
+  VinDr test ECE 0.057  Brier 0.0614
+
+=== paper protocol vs clean protocol (what moves when calibration data are disjoint) ===
+  G1 NIH on-site     0.045 -> 0.046
+  G1 NIH->VinDr      0.057 -> 0.055
+  G1 VinDr on-site   0.059 -> 0.061
+  G1 VinDr->NIH      0.046 -> 0.053
+  G2 NIH on-site     accept 0.50 -> 0.50 | confident-error 0.117 -> 0.116
+  G2 NIH->VinDr      accept 0.26 -> 0.25 | confident-error 0.030 -> 0.031
+  G2 VinDr on-site   accept 0.57 -> 0.49 | confident-error 0.087 -> 0.085
+  G2 VinDr->NIH      accept 0.75 -> 0.70 | confident-error 0.187 -> 0.176
+
+[s31] Paper values to compare against: G1 NIH->VinDr 0.085, VinDr on-site 0.053, VinDr->NIH 0.030; G2 symmetric NIH on-site 0.40/0.089, NIH->VinDr 0.18/0.027, VinDr on-site 0.56/0.089.
+[s31] wrote experiments/results\s31_clean_protocol.json

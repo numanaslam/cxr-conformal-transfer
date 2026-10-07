@@ -1,0 +1,7 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s06_evaluate --config configs/nih.yaml
+[s06] test images=11863 | unanchored (any unseen)=1244 (10.5%)
+[s06] Axis-A unanchored AUROC = 0.669  (95% CI 0.642-0.696, patient-bootstrap)
+[s06] FPR@95TPR = 0.838
+[s06] clean-subset AUROC (unseen-only vs known-only) = 0.515 [550 vs 4228] — removes the easy Normal signal
+[s06] valve @ q_hat=0.6289: flags 311/11863 | recall=0.05 precision=0.18 false-flag=0.024
+[s06] wrote experiments/results\axisA_unanchored.json

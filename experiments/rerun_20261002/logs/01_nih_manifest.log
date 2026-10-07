@@ -1,0 +1,10 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe scripts/build_manifest_nih.py --csv data/raw/nih/Data_Entry_2017.csv --image-root data/raw/nih/images
+[nih] read 112120 rows from data/raw/nih/Data_Entry_2017.csv
+[nih] with image file present: 112120
+[nih] wrote 112120 rows -> data/raw/nih/labels.csv
+[nih] known V (9): ['Atelectasis', 'Cardiomegaly', 'Pleural Effusion', 'Infiltration', 'Mass', 'Nodule', 'Consolidation', 'Pleural Thickening', 'Normal']
+[nih] unseen (6): ['Pneumothorax', 'Hernia', 'Pulmonary Edema', 'Emphysema', 'Fibrosis', 'Pneumonia']
+[nih] projections: {'PA': 67310, 'AP': 44810}
+[nih] positives/concept: {'Atelectasis': 11559, 'Cardiomegaly': 2776, 'Pleural Effusion': 13317, 'Infiltration': 19894, 'Mass': 5782, 'Nodule': 6331, 'Consolidation': 4667, 'Pleural Thickening': 3385, 'Normal': 60361, 'Pneumothorax': 5302, 'Hernia': 227, 'Pulmonary Edema': 2303, 'Emphysema': 2516, 'Fibrosis': 1686, 'Pneumonia': 1431}
+[nih] wrote bank -> data/concepts/nih_concepts.yaml
+[nih] next: s01 -> s02 -> s03 -> s04 with --config configs/nih.yaml

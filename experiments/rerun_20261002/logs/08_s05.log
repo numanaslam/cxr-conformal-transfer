@@ -1,0 +1,13 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s05_run_baselines --config configs/nih.yaml
+[s05] test=11863 | unanchored(any)=1244 | clean subset: 550 unseen-only vs 4228 known-only
+baseline       AnyAUROC  CleanAUROC
+-----------------------------------
+valve_s(x)        0.669       0.515
+JointEnergy       0.669       0.531
+MCM               0.578       0.522
+MSP-margin        0.538       0.510
+Mahalanobis       0.620       0.537
+KNN               0.665       0.535
+-----------------------------------
+[s05] best clean-AUROC: Mahalanobis = 0.537 (chance=0.5; valve_s(x)=0.515)
+[s05] wrote experiments/results\s05_baselines.json

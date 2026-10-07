@@ -1,0 +1,14 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s16_crc_cross_hospital --config configs/vindr.yaml
+[s16] G2 selective prediction (abnormal-vs-normal) | alpha_risk=0.1 | boot=1000
+       tau*/lambda: NIH=0.443/0.188  VinDr=0.455/0.108
+
+deployment               cover         accept&error [CI]  err|acc  acc.FN  <=a
+NIH test  (cal NIH)       0.50      0.117 [0.107,0.126]    0.232   0.071  NO
+VinDr test (cal NIH)      0.26      0.030 [0.026,0.035]    0.116   0.028  YES
+VinDr test (cal VinDr)    0.57      0.087 [0.081,0.093]    0.153   0.063  YES
+
+[s16] VERDICT (naive NIH->VinDr G2):
+  accept&error 0.030 [0.026,0.035] <= 0.1 (CI entirely below alpha) -> G2 HOLDS; cross-hospital shift hurts abstention EFFICIENCY (G1), not accepted-case safety.
+  -> reframe: 'shift primarily affects abstention efficiency, not patient-safety risk.'
+
+[s16] wrote experiments/results\s16_crc_cross_hospital.json

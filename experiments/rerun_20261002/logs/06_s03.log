@@ -1,0 +1,2 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s03_calibrate_concepts --config configs/nih.yaml
+[s03] fit per-concept Platt for 9 concepts -> data/processed_nih\platt.json

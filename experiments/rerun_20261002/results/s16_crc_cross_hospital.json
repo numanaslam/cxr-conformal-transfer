@@ -1,0 +1,49 @@
+{
+  "alpha_risk": 0.1,
+  "tau": {
+    "nih": 0.44262293677716924,
+    "vindr": 0.455174735899091
+  },
+  "lambda": {
+    "nih": 0.18825694299947723,
+    "vindr": 0.10794698704991448
+  },
+  "rows": {
+    "NIH test  (cal NIH)": {
+      "n": 11863,
+      "n_abnormal": 5472,
+      "coverage": 0.503835454775352,
+      "accept_error": 0.11674955744752592,
+      "accept_error_ci": [
+        0.10694365855630103,
+        0.12622590463307407
+      ],
+      "error_given_accept": 0.23172159946461435,
+      "accepted_fn_rate": 0.07093859795884223
+    },
+    "VinDr test (cal NIH)": {
+      "n": 7489,
+      "n_abnormal": 2220,
+      "coverage": 0.2622513019094672,
+      "accept_error": 0.030444652156496194,
+      "accept_error_ci": [
+        0.026305247696621712,
+        0.03458405661637068
+      ],
+      "error_given_accept": 0.11608961303462322,
+      "accepted_fn_rate": 0.0280040733197556
+    },
+    "VinDr test (cal VinDr)": {
+      "n": 7489,
+      "n_abnormal": 2220,
+      "coverage": 0.567632527707304,
+      "accept_error": 0.08679396448123915,
+      "accept_error_ci": [
+        0.08051809320336493,
+        0.09293630658298838
+      ],
+      "error_given_accept": 0.1529051987767584,
+      "accepted_fn_rate": 0.06280875088214538
+    }
+  }
+}

@@ -1,0 +1,27 @@
+name: ovcbmr
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  # Install CUDA-matched torch on the server (see SERVER_SETUP.md step 3); leaving
+  # it to pip keeps this file portable across CUDA versions.
+  - pip:
+      - torch==2.4.1
+      - torchvision==0.19.1
+      - open_clip_torch==2.26.1
+      - transformers==4.44.2
+      - huggingface_hub==0.25.1
+      - timm==1.0.9
+      - Pillow==10.4.0
+      - scikit-learn==1.5.2
+      - scipy==1.14.1
+      - numpy==1.26.4
+      - pandas==2.2.3
+      - pyyaml==6.0.2
+      - tqdm==4.66.5
+      - matplotlib==3.9.2
+      - tensorboard==2.17.1
+      - pytest==8.3.3

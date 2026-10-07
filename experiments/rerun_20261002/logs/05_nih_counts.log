@@ -1,0 +1,13 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.count_manifest --config configs/nih.yaml
+[manifest] dataset=NIH-ChestXray14  frontal_only=True
+           embeddings=data/embeddings_nih
+  train :   78607 images
+  calib :   10711 images
+  val   :   10939 images
+  test  :   11863 images
+  TOTAL :  112120 images (post-filter, embedded)
+  processed index: 112120 items, 30805 unique patients
+    train :  21622 unique patients
+    calib :   2997 unique patients
+    val   :   3067 unique patients
+    test  :   3119 unique patients

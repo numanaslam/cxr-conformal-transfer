@@ -1,0 +1,4 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s04_fit_conformal --config configs/nih.yaml
+[s04] G1 on 4430 known-abnormal calib images | alpha=0.05
+[s04] q_hat=0.6289 | empirical false-flag rate=0.050 (<= 0.05)
+[s04] wrote data/processed_nih\conformal.json

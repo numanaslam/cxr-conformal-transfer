@@ -1,0 +1,19 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s19_vindr_concepts --config configs/vindr.yaml
+[s19] per-concept AUROC / ECE, NIH test vs VinDr test (shared NIH-trained heads)
+
+concept              NIH AUROC VinDr AUROC   ΔAUROC  NIH ECE VinDr ECE    Vn+
+Pleural Effusion         0.845       0.816   -0.029    0.010     0.017    520
+Cardiomegaly             0.839       0.821   -0.017    0.004     0.130   1153
+Mass                     0.789       0.748   -0.041    0.006     0.016    416
+Consolidation            0.787       0.914    0.128    0.004     0.011    184
+Normal                   0.760       0.803    0.043    0.026     0.135   5269
+Atelectasis              0.760       0.656   -0.104    0.007     0.058     92
+Pleural Thickening       0.744       0.805    0.061    0.002     0.105   1003
+Infiltration             0.691       0.799    0.108    0.008     0.116    310
+Nodule                   0.690       0.689   -0.001    0.004     0.005    416
+
+[s19] mean abnormal AUROC : NIH=0.768  VinDr=0.781
+[s19] mean abnormal ECE   : NIH=0.006  VinDr=0.057
+[s19] (VinDr AUROC on concepts with >=1 positive; Vn+ = VinDr positives)
+
+[s19] wrote experiments/results\s19_vindr_concepts.json

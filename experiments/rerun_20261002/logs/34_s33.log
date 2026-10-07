@@ -1,0 +1,31 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s33_multiseed --config configs/vindr.yaml --seeds 0 1 2 3 4
+[s33] pooled NIH 112120 images / 30805 patients, VinDr 15000 studies; seeds [0, 1, 2, 3, 4]
+
+[s33] seed 0: AUROC 0.768->0.772 | ECE 0.007->0.060 | G1 fwd 0.038 site 0.049 rev 0.061 | G2 conf-err fwd 0.032 rev 0.195
+[s33] seed 1: AUROC 0.769->0.774 | ECE 0.008->0.058 | G1 fwd 0.041 site 0.046 rev 0.053 | G2 conf-err fwd 0.034 rev 0.192
+[s33] seed 2: AUROC 0.763->0.772 | ECE 0.005->0.060 | G1 fwd 0.065 site 0.054 rev 0.049 | G2 conf-err fwd 0.033 rev 0.180
+[s33] seed 3: AUROC 0.768->0.774 | ECE 0.005->0.057 | G1 fwd 0.035 site 0.048 rev 0.045 | G2 conf-err fwd 0.026 rev 0.177
+[s33] seed 4: AUROC 0.762->0.770 | ECE 0.007->0.060 | G1 fwd 0.072 site 0.045 rev 0.031 | G2 conf-err fwd 0.018 rev 0.178
+
+metric                          mean      sd     min     max
+auroc_nih                      0.766   0.003   0.762   0.769
+auroc_vindr                    0.772   0.002   0.770   0.774
+ece_nih                        0.006   0.001   0.005   0.008
+ece_vindr                      0.059   0.001   0.057   0.060
+abn_auroc_nih                  0.745   0.007   0.734   0.753
+abn_auroc_vindr                0.795   0.005   0.787   0.798
+g1_nih_onsite                  0.047   0.008   0.034   0.057
+g1_nih_to_vindr                0.050   0.017   0.035   0.072
+g1_vindr_onsite                0.048   0.003   0.045   0.054
+g1_vindr_to_nih                0.048   0.011   0.031   0.061
+g2_accept_nih_onsite           0.416   0.005   0.412   0.425
+g2_conferr_nih_onsite          0.096   0.007   0.085   0.104
+g2_accept_nih_to_vindr         0.215   0.012   0.206   0.236
+g2_conferr_nih_to_vindr        0.029   0.007   0.018   0.034
+g2_accept_vindr_onsite         0.526   0.067   0.456   0.632
+g2_conferr_vindr_onsite        0.098   0.004   0.092   0.102
+g2_accept_vindr_to_nih         0.701   0.048   0.631   0.763
+g2_conferr_vindr_to_nih        0.184   0.009   0.177   0.195
+
+[s33] targets: G1 0.05, G2 confident-error 0.1. Stable across seeds if the sd is small against the gap between naive and on-site values.
+[s33] wrote experiments/results\s33_multiseed.json

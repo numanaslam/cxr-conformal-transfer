@@ -1,0 +1,50 @@
+{
+  "per_concept": {
+    "Atelectasis": {
+      "auroc": 0.7597387822906516,
+      "ece": 0.007449210296747262
+    },
+    "Cardiomegaly": {
+      "auroc": 0.8386220855430383,
+      "ece": 0.004260407676360332
+    },
+    "Pleural Effusion": {
+      "auroc": 0.8451850615717403,
+      "ece": 0.010322304187808558
+    },
+    "Infiltration": {
+      "auroc": 0.6911023113925345,
+      "ece": 0.007950794216821357
+    },
+    "Mass": {
+      "auroc": 0.7890412117737182,
+      "ece": 0.006129326117359515
+    },
+    "Nodule": {
+      "auroc": 0.689985800821832,
+      "ece": 0.0043409305267982515
+    },
+    "Consolidation": {
+      "auroc": 0.7869015146229779,
+      "ece": 0.003737384593649819
+    },
+    "Pleural Thickening": {
+      "auroc": 0.7439032408526134,
+      "ece": 0.002221367170907835
+    },
+    "Normal": {
+      "auroc": 0.7597575023264623,
+      "ece": 0.025924098484397657
+    }
+  },
+  "abstention_drivers": {
+    "Cardiomegaly": 56,
+    "Pleural Effusion": 731,
+    "Infiltration": 1257,
+    "Atelectasis": 200,
+    "Mass": 114,
+    "Nodule": 12,
+    "Pleural Thickening": 3
+  },
+  "n_abstained": 2373
+}

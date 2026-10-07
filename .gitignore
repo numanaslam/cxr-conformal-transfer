@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+*.egg-info/
+data/raw/
+data/processed*/
+data/embeddings*/
+experiments/results/
+*.npy
+*.pt
+*.parquet

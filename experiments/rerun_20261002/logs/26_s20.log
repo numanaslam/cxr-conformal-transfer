@@ -1,0 +1,10 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s20_blackbox_baseline --config configs/vindr.yaml
+[s20] black-box direct head vs CBM abnormality | alpha_risk=0.1 | boot=1000
+
+predictor            AUROC NIH AUROC VinDr NIH->VinDr cover       accept&err [CI]  interpretable
+black-box direct         0.760       0.803             0.26      0.030 [0.026,0.034]   heatmap only
+CBM  1-p(Normal)         0.760       0.803             0.26      0.030 [0.026,0.035] named concepts
+
+[s20] The CBM additionally provides: (i) which finding is uncertain (concept attribution),
+      and (ii) the unanchored/open-set safety valve -- neither has a black-box equivalent.
+[s20] wrote experiments/results\s20_blackbox_baseline.json

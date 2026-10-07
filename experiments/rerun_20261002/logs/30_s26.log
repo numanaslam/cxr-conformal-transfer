@@ -1,0 +1,16 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s26_local_platt --config configs/vindr.yaml
+[s26] VinDr test ECE: source NIH Platt vs locally refit Platt (AUROC unchanged)
+
+concept             AUROC  ECE(NIH Platt)  ECE(local)  improve
+Atelectasis         0.656           0.058       0.000   +0.058
+Cardiomegaly        0.821           0.130       0.014   +0.117
+Pleural Effusion    0.816           0.017       0.007   +0.010
+Infiltration        0.799           0.116       0.003   +0.113
+Mass                0.748           0.016       0.005   +0.012
+Nodule              0.689           0.005       0.005   +0.000
+Consolidation       0.914           0.011       0.003   +0.008
+Pleural Thickening  0.805           0.105       0.014   +0.091
+Normal              0.803           0.135       0.016   +0.119
+
+[s26] mean ECE 0.066 -> 0.007 after local refit. Calibration recovers locally; refit Platt at the site and keep the calibrated-risk claim.
+[s26] wrote experiments/results\s26_local_platt.json

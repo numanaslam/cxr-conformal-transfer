@@ -1,0 +1,65 @@
+# Synthetic dry-run config — proves s01->s03 on tiny random data (see make_synthetic_cxrlt.py).
+# Uses separate processed_synth / embeddings_synth dirs so it never collides with a real run.
+seed: 0
+
+paths:
+  raw: data/raw
+  processed: data/processed_synth
+  concepts: data/concepts
+  embeddings: data/embeddings_synth
+  results: experiments/results
+
+data:
+  dataset: CXR-LT-2026-SYNTH
+  manifest: data/raw/cxrlt2026_synth/labels.csv
+  image_root: data/raw/cxrlt2026_synth/images
+  frontal_only: true
+  projections_keep: [PA, AP]
+  id_col: image_id
+  patient_col: patient_id
+  projection_col: projection
+  split_col: split
+  image_size: 224
+  num_workers: 0            # Windows-safe for the dry run
+
+splits:
+  fractions: {train: 0.70, calib: 0.10, val: 0.10, test: 0.10}
+  calib_from_train: true
+
+concepts:
+  bank: default
+  prompt_ensemble: true
+  negatives: true
+
+model:
+  encoder: biomedclip
+  hf_id: hf-hub:microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224
+  embed_dim: 512
+  freeze: true
+
+calibrate:
+  method: platt
+  max_iter: 200
+
+valve:
+  abnormality_prompt: "no acute cardiopulmonary abnormality"
+  use_vacuity: false
+
+conformal:
+  alpha_flag: 0.05
+  alpha_risk: 0.10
+  shift_robust: false
+
+ood:
+  baselines: [msp, jointenergy, mahalanobis, knn, mcm, neglabel, emptyset]
+  knn_k: 50
+
+eval:
+  bootstrap: 1000
+  fpr_at_tpr: 0.95
+  seeds: [0, 1, 2]
+
+compute:
+  device: cuda
+  amp: true
+  batch_size: 32

@@ -1,0 +1,12 @@
+$ C:\paper6_code\.venv310\Scripts\python.exe -m scripts.s25_fn_crc --config configs/vindr.yaml
+[s25] FN-controlled vs symmetric CRC | alpha=0.1 | boot=1000
+
+direction   loss          tau    lam  accept  acc.FN  FN<=a?  err|acc
+NIH->VinDr  fn          0.443  0.080    0.67   0.066     YES    0.187
+NIH->VinDr  symmetric   0.443  0.188    0.26   0.028     YES    0.116
+
+VinDr->NIH  fn          0.455  0.001    1.00   0.133      NO    0.291
+VinDr->NIH  symmetric   0.455  0.108    0.75   0.109     YES    0.250
+
+[s25] Read: for loss='fn' the accept&FN column is the CRC-controlled quantity and should sit <= alpha; compare its acceptance against loss='symmetric' to see the cost of bounding misses directly.
+[s25] wrote experiments/results\s25_fn_crc.json

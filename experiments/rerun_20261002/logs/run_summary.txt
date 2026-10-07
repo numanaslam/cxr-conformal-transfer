@@ -1,0 +1,49 @@
+
+--- 2026-10-02 19:19 ---
+  nih_manifest   FAILED (exit 1)       0m00s
+
+--- 2026-10-02 19:59 ---
+  nih_manifest   ok                    0m01s
+  nih_check      ok                    0m00s
+  nih_split      ok                    0m04s
+  nih_embed      ok                    6m50s
+  nih_counts     ok                    0m02s
+  s03            ok                    0m09s
+  s04            ok                    0m02s
+  s05            ok                    0m46s
+  s06            ok                    0m09s
+  s08            ok                    0m03s
+  s09            ok                    0m12s
+  s10            ok                    0m02s
+  s07            ok                    0m05s
+  s11            ok                    0m02s
+  vindr_manifest ok                    0m00s
+  vindr_check    ok                    0m00s
+  vindr_split    ok                    0m02s
+  vindr_embed    ok                    1m04s
+  vindr_counts   ok                    0m01s
+  s12            ok                    0m03s
+  s12b           ok                    0m05s
+  s16            ok                    0m09s
+  s17            ok                    0m05s
+  s18            ok                    0m03s
+  s19            ok                    0m02s
+  s20            ok                    0m10s
+  s23            ok                    0m10s
+  s24            ok                    0m09s
+  s25            ok                    0m10s
+  s26            ok                    0m03s
+  s27            ok                    0m04s
+  s31            ok                    0m41s
+  s32            ok                    1m54s
+  s33            ok                    0m42s
+  s14            ok                    0m11s
+  s15            ok                    16m40s
+  fig_example    ok                    0m09s
+  s30            FAILED (exit 1)       7m19s
+
+--- 2026-10-02 20:04 ---
+  s30            ok                    2m46s
+  s29            ok                    1m17s
+  s28            ok                    0m00s
+  s13            ok                    0m04s
