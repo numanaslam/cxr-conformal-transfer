@@ -1,5 +1,5 @@
-# s36_revision2, GPU machine, 2026-11-04. Sites nih, vindr, iuxray (matched labels); --seeds 20 --redraws 200.
-# Per-seed G1 lines of the 20 re-splits omitted; they are in s36_revision2.json (per_seed).
+# s36_resplits, GPU machine, 2026-11-04. Sites nih, vindr, iuxray (matched labels); --seeds 20 --redraws 200.
+# Per-seed G1 lines of the 20 re-splits omitted; they are in s36_resplits.json (per_seed).
 [s35] vindr: calib 7511 (halves 3754/3757), test 7489
 [s35] iuxray: calib 1133 (halves 570/563), test 1128
 

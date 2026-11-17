@@ -1,4 +1,4 @@
-"""[figure] What transfers between the three sites, shown per split (revision 1, Figure 2).
+"""[figure] What transfers between the three sites, shown per split (Figure 2).
 
 Three stacked panels over the nine calibrated -> deployed settings of s35, grouped by the site
 of deployment (on-site first, then the two transferred thresholds, shaded): the G1
@@ -7,7 +7,7 @@ the five re-splits, the grey bar is their mean, and the filled marker is the pri
 its clustered bootstrap interval. Dashed lines are the targets. Reads s35 result JSON only.
 
     python scripts/make_fig_multisite.py --json experiments/results/s35_multisite_nihtax.json \
-        --out revision1/fig_transfer.png
+        --out fig_transfer.png
 """
 from __future__ import annotations
 import argparse
@@ -23,12 +23,12 @@ ORDER = [("nih", "nih"), ("vindr", "nih"), ("iuxray", "nih"),
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", default="experiments/results/s35_multisite_nihtax.json")
-    ap.add_argument("--out", default="revision1/fig_transfer.png")
+    ap.add_argument("--out", default="fig_transfer.png")
     ap.add_argument("--resplits", default=None,
-                    help="JSON whose resplits.per_seed to plot instead (e.g. s36_revision2.json, 20 re-splits)")
-    ap.add_argument("--height-in", type=float, default=6.9, help="figure height in inches in --cmc mode")
-    ap.add_argument("--cmc", action="store_true",
-                    help="CMC layout: 6.5 in (16.51 cm) wide, Arial labels of at least 8 pt in black, panel letters, "
+                    help="JSON whose resplits.per_seed to plot instead (e.g. s36_resplits.json, 20 re-splits)")
+    ap.add_argument("--height-in", type=float, default=6.9, help="figure height in inches in --print mode")
+    ap.add_argument("--print", action="store_true",
+                    help="print layout: 6.5 in (16.51 cm) wide, Arial labels of at least 8 pt in black, panel letters, "
                          "and an RGB TIFF at 600 dpi next to the PNG")
     a = ap.parse_args()
     import matplotlib
@@ -49,7 +49,7 @@ def main():
     # font sizes (points at the printed size): title, tick labels, site labels, legend
     fs = dict(base=10.5, title=11, tick=9.5, site=10.5, legend=10, site_color="#444444")
     figsize = (10.6, 8.6)
-    if a.cmc:
+    if a.print:
         fs = dict(base=9, title=9.5, tick=8.5, site=9, legend=8.5, site_color="black")
         figsize = (6.5, a.height_in)
         plt.rcParams.update({"font.family": ["Arial", "Helvetica", "DejaVu Sans"], "text.color": "black",
@@ -80,13 +80,13 @@ def main():
         ax.set_xlim(-0.55, len(ORDER) - 0.45)
         ax.set_ylim(*ylim)
         ax.set_title(title, fontsize=fs["title"], loc="left")
-        if a.cmc:
+        if a.print:
             ax.text(-0.075, 1.04, "abc"[list(axes).index(ax)], transform=ax.transAxes, fontsize=fs["title"] + 1,
                     fontweight="bold", va="bottom", ha="left")
     axes[-1].set_xticks(range(len(ORDER)))
     axes[-1].set_xticklabels([f"{NAME[c]}\n$\\to$ {NAME[t]}" for c, t in ORDER], fontsize=fs["tick"])
     for j, t in enumerate(("nih", "vindr", "iuxray")):
-        axes[0].text(3 * j + 1, 1.30 if a.cmc else 1.16, f"deployed at {NAME[t]}", ha="center", va="bottom", fontsize=fs["site"],
+        axes[0].text(3 * j + 1, 1.30 if a.print else 1.16, f"deployed at {NAME[t]}", ha="center", va="bottom", fontsize=fs["site"],
                      color=fs["site_color"], transform=axes[0].get_xaxis_transform())
     handles = [
         Line2D([], [], marker="o", ls="none", mfc="none", mec=grey, mew=1.1, ms=6, label=f"{len(seeds)} re-splits"),
@@ -95,13 +95,13 @@ def main():
         Line2D([], [], color=red, ls="--", lw=1.2, label="target"),
     ]
     fig.legend(handles=handles, loc="lower center", ncol=4, frameon=False, fontsize=fs["legend"])
-    fig.tight_layout(rect=(0, 0.04, 1, 0.93 if a.cmc else 0.95))
+    fig.tight_layout(rect=(0, 0.04, 1, 0.93 if a.print else 0.95))
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
-    fig.savefig(a.out, dpi=600 if a.cmc else 300)
-    if a.cmc:
+    fig.savefig(a.out, dpi=600 if a.print else 300)
+    if a.print:
         from PIL import Image, ImageChops
         im = Image.open(a.out).convert("RGB")
-        bbox = ImageChops.difference(im, Image.new("RGB", im.size, "white")).getbbox()   # trim white margins (CMC)
+        bbox = ImageChops.difference(im, Image.new("RGB", im.size, "white")).getbbox()   # trim white margins
         pad = 40
         im = im.crop((max(bbox[0] - pad, 0), max(bbox[1] - pad, 0), min(bbox[2] + pad, im.width), min(bbox[3] + pad, im.height)))
         im.save(a.out, dpi=(600, 600))

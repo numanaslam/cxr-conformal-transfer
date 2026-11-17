@@ -1,4 +1,4 @@
-"""[clean protocol, both directions] Two things reviewers asked for, in one run.
+"""[clean protocol, both directions] Two checks in one run.
 
 (1) Disjoint calibration. In the paper protocol the Platt scalars, the G2 decision threshold tau,
     the G1 quantile and the G2 stringency are all fit on the SAME calibration split, so the
@@ -19,7 +19,7 @@ ECE and Brier score are printed for both protocols. Cached embeddings, CPU, no G
     python -m scripts.s31_clean_protocol --config configs/vindr.yaml
     python -m scripts.s31_clean_protocol --config configs/vindr.yaml --one-per-patient
 
---one-per-patient (revision 1) keeps one image per patient in the NIH calibration and test splits
+--one-per-patient keeps one image per patient in the NIH calibration and test splits
 (draw 0 of s34), so that the NIH statements are exact rather than approximate under the 3.6
 images per patient of NIH; NIH val keeps all images. It writes s31_clean_protocol_onepp.json.
 """

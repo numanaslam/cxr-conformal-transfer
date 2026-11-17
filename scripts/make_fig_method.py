@@ -1,9 +1,9 @@
-"""[figure] Method overview (revision 1, Figure 1): (a) three sites, (b) the frozen concept model,
+"""[figure] Method overview (Figure 1): (a) three sites, (b) the frozen concept model,
 (c) the two separate conformal rules. Drawn with matplotlib and numpy only; the radiograph is a
 procedural drawing and the small distributions are illustrative, not data. Sized for a full-width
 (about 7 inch) figure, so that no text prints below 6 pt.
 
-    python scripts/make_fig_method.py --out revision1/fig_method.png
+    python scripts/make_fig_method.py --out fig_method.png
 """
 from __future__ import annotations
 import argparse
@@ -45,7 +45,7 @@ def radiograph(n=160):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default="revision1/fig_method.png")
+    ap.add_argument("--out", default="fig_method.png")
     ap.add_argument("--images", default="fig_assets",
                     help="folder with <site>_<k>.png from export_fig_images.py; a drawing is used if absent")
     ap.add_argument("--pick", nargs="*", default=["nih=0", "vindr=3", "iuxray=0"],

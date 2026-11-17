@@ -1,4 +1,4 @@
-"""[revision 2] Analyses requested by the third review, on the three sites of s35 (cached embeddings only).
+"""[re-splits] Repeated re-splits, repartitions and checks on the three sites of s35 (cached embeddings only).
 
   A  20 re-splits with retrained heads (s35 protocol): mean, sd, 2.5 and 97.5 percentiles, and the
      fraction of splits above the target, for every ordered pair of sites.
@@ -16,7 +16,7 @@
   G  Measured shift per pair: abnormal prevalence, domain AUROC (from s35), and Kolmogorov-Smirnov
      distances of A(x) among normal and among abnormal studies and of s(x) among known abnormal studies.
 
-    python -m scripts.s36_revision2 --config configs\\vindr.yaml ^
+    python -m scripts.s36_resplits --config configs\\vindr.yaml ^
         --sites vindr=configs\\vindr.yaml iuxray=configs\\iuxray_nihtax.yaml --seeds 20 --redraws 200
 """
 from __future__ import annotations
@@ -193,7 +193,7 @@ def main():
     ap.add_argument("--seeds", type=int, default=20, help="number of re-splits with retrained heads (seeds 0..n-1)")
     ap.add_argument("--redraws", type=int, default=200)
     ap.add_argument("--nboot", type=int, default=1000)
-    ap.add_argument("--out", default="s36_revision2.json")
+    ap.add_argument("--out", default="s36_resplits.json")
     args, _ = ap.parse_known_args()
     cfg = load_config(args.config)
     sites = dict(s.split("=", 1) for s in args.sites)

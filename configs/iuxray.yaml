@@ -1,4 +1,4 @@
-# Indiana University chest X-ray collection (IU X-ray, Open-i; CC BY-NC-ND 4.0): third site, revision 1.
+# Indiana University chest X-ray collection (IU X-ray, Open-i; CC BY-NC-ND 4.0): third site.
 # Built by scripts/build_iuxray.py (one frontal image per report); split by report into calib/test.
 seed: 42
 

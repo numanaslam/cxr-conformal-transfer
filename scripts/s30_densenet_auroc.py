@@ -1,5 +1,5 @@
 """[fine-tuned baseline] How much discrimination does the frozen encoder cost versus a CNN
-trained end-to-end on the same source data? A reviewer's fair question. We take a DenseNet-121
+trained end-to-end on the same source data? We take a DenseNet-121
 trained on NIH ChestX-ray14 (torchxrayvision's published weights -- the canonical CheXNet-style
 model, no training here), run it on the VinDr test images, and report its per-concept AUROC next
 to our frozen-BiomedCLIP linear-probe CBM (from s19_vindr_concepts.json / the paper's Table 1).

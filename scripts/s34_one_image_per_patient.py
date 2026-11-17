@@ -1,4 +1,4 @@
-"""[revision 1] One image per patient at NIH, so that the NIH guarantees are exact.
+"""[one image per patient] One image per patient at NIH, so that the NIH guarantees are exact.
 
 NIH has 3.6 images per patient, so image-level calibration and test scores are exchangeable only
 between patients, not between images, and the image-level G1 and G2 statements at NIH are
@@ -15,7 +15,7 @@ The choice of image is repeated over --draws random draws. Reported per setting:
 all-images value (as in s31), and the mean, sd, min and max over the draws, for the G1
 false-deferral rate and the G2 (symmetric) acceptance and confident-error rate.
 
-It also reports, for reviewer point R2.7, the VinDr AUROC of a single merged Nodule/Mass score,
+It also reports the VinDr AUROC of a single merged Nodule/Mass score,
 max(p_Nodule, p_Mass), against the single native VinDr Nodule/Mass label.
 
 Cached embeddings, CPU only, about a minute per draw.

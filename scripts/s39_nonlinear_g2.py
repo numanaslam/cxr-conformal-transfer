@@ -22,7 +22,7 @@ from ovcbmr.config import load_config
 from ovcbmr.eval.metrics import auroc
 from scripts.s31_clean_protocol import _split, _take, _halves, _tau, _lam, _g2, one_per_patient_mask
 from scripts.s35_multisite import _pairs
-from scripts.s36_revision2 import _sub, _cat, _summ, _rates
+from scripts.s36_resplits import _sub, _cat, _summ, _rates
 import scripts.s33_multiseed as M
 
 

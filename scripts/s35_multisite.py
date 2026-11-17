@@ -1,4 +1,4 @@
-"""[revision 1] Transfer of both guarantees between three sites: NIH, VinDr-CXR and IU X-ray.
+"""[three sites] Transfer of both guarantees between three sites: NIH, VinDr-CXR and IU X-ray.
 
 Generalises s31 (primary split, clean protocol) and s33 (re-splits) from one pair of sites to every
 ordered pair of N sites, with one image per patient at NIH (as in s31/s33 --one-per-patient; VinDr

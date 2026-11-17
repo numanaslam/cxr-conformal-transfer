@@ -118,7 +118,7 @@ Other useful forms:
 python scripts\run_all.py --no-gpu              # only the stages that use cached embeddings
 python scripts\run_all.py --only s31 s33        # just these stages
 python scripts\run_all.py --skip s29 s30        # everything except the torchxrayvision stages
-python scripts\run_all.py --groups review       # one group: nih vindr cross review gpu figs
+python scripts\run_all.py --groups extra        # one group: nih vindr cross extra gpu figs
 ```
 
 ## 6. Output
@@ -138,14 +138,14 @@ It holds every result JSON, the figures, and all the logs.
 | `nih` | Build the NIH manifest, split by patient, compute embeddings, train the nine linear heads, run the source-hospital experiments | embeddings only |
 | `vindr` | Build the VinDr manifest, split, compute embeddings | embeddings only |
 | `cross` | The cross-hospital experiments reported in the paper (s12 to s23) | no |
-| `review` | Analyses added during review: valve ablation, missed-finding control, local recalibration, weighted-conformal sweep, clean calibration protocol, nonlinear comparator, multiple seeds (s24 to s33) | no |
+| `extra` | Further analyses: valve ablation, missed-finding control, local recalibration, weighted-conformal sweep, clean calibration protocol, nonlinear comparator, multiple seeds (s24 to s33) | no |
 | `gpu` | Saliency and localization, and the trained DenseNet comparisons (s14, s15, s29, s30) | yes |
 | `figs` | Corrected localization table and the paper figures | no |
 
 ## Will the numbers match the paper?
 
 The numbers in the paper are the output of this pipeline, run from scratch on 2026-10-02. The
-result files and logs of that run are kept in `experiments/rerun_20261002/`.
+result files and logs of that run are kept in `experiments/base_run/`.
 
 Check the split first. Stage `nih_split` must print these counts:
 

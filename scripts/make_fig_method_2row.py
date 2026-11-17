@@ -1,10 +1,10 @@
-"""[figure] Method overview in two rows (CMC Figure 1): (a) three sites, (b) the frozen concept model,
-(c) the two separate conformal rules. Drawn at the printed size, 165 mm wide (the CMC limit is
-16.51 cm), in millimetre coordinates, so every label prints at its stated point size: body text 8 pt,
+"""[figure] Method overview in two rows (Figure 1, print layout): (a) three sites, (b) the frozen concept model,
+(c) the two separate conformal rules. Drawn at the printed size, 165 mm wide (a full
+page width of 16.51 cm), in millimetre coordinates, so every label prints at its stated point size: body text 8 pt,
 headings 9 pt, panel letters 10 pt, all Arial and black. The radiographs are NIH ChestX-ray14 test
 images (licence-safe); the small distributions in (c) are schematic, not data.
 
-    python scripts/make_fig_method_2row.py --out cmc/fig_method.png \
+    python scripts/make_fig_method_2row.py --out fig_method.png \
         --pick nih=0 vindr=nih_1 iuxray=nih_2
 
 Writes the PNG (600 dpi, RGB) and a TIFF next to it.
@@ -14,7 +14,7 @@ import argparse
 import os
 
 W_MM, H_MM, DPI = 165.0, 103.0, 600
-INK = "#000000"            # CMC: all labels in black
+INK = "#000000"            # all labels in black
 SOFT = "#5f6b76"           # rules and axis lines only, never text
 LINE = "#c9d1d9"
 BLUE, GREEN, ORANGE, RED = "#2456a6", "#2e7d4f", "#c0661f", "#b5382b"
@@ -25,7 +25,7 @@ MM = 1 / 25.4
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default="cmc/fig_method.png")
+    ap.add_argument("--out", default="fig_method.png")
     ap.add_argument("--images", default="fig_assets")
     ap.add_argument("--pick", nargs="*", default=["nih=0", "vindr=nih_1", "iuxray=nih_2"])
     a = ap.parse_args()

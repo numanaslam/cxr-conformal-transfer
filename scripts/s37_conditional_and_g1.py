@@ -34,7 +34,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from ovcbmr.config import load_config
 from scripts.s31_clean_protocol import _tau, _lam
 from scripts.s35_multisite import _primary, _pairs
-from scripts.s36_revision2 import _sub, _cat, _summ, _rates
+from scripts.s36_resplits import _sub, _cat, _summ, _rates
 
 RISKS = (0.10, 0.15)
 DELTA = 0.05

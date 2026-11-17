@@ -1,17 +1,17 @@
-"""[review addenda] CPU-only extras requested in review, using the paper's exact machinery
+"""[addenda] CPU-only additional analyses, using the paper's exact machinery
 (same heads, valve statistic, split-conformal q-hat, and CRC rule as s16/s17). Prints four
-labelled blocks to paste back:
+labelled blocks:
 
   (A) G1 false-deferral, IN-VOCABULARY known-abnormal, BOTH directions (forward is a sanity
-      check that should reproduce ~0.085 / 0.053; reverse VinDr->NIH answers review #10).
+      check that should reproduce ~0.085 / 0.053; reverse VinDr->NIH is the new direction).
   (D) Weighted (importance-weighted) conformal vs naive vs group-conditional, NIH->VinDr
-      in-vocab G1, with domain-classifier AUROC and Kish ESS (review #11).
-  (B) G2 accepted sensitivity/specificity + acceptance among normal vs abnormal (review #5).
-  (C) G2 sample-size: how much local VinDr calibration recovers the acceptance rate (review #7).
+      in-vocab G1, with domain-classifier AUROC and Kish ESS.
+  (B) G2 accepted sensitivity/specificity + acceptance among normal vs abnormal.
+  (C) G2 sample-size: how much local VinDr calibration recovers the acceptance rate.
 
 Cached embeddings only, no GPU.
 
-    python -m scripts.s23_review_addenda --config configs/vindr.yaml
+    python -m scripts.s23_addenda --config configs/vindr.yaml
 """
 from __future__ import annotations
 import argparse
@@ -134,7 +134,7 @@ def main():
 
     # ===================== (A) G1 in-vocab, both directions =====================
     print("=" * 74)
-    print(f"(A) G1 false-deferral, IN-VOCAB known-abnormal (alpha={args.alpha})   [review #10]")
+    print(f"(A) G1 false-deferral, IN-VOCAB known-abnormal (alpha={args.alpha})")
     nih_cal_S, nih_cal_pat, nih_cal_E = _g1(NE, NP, "calib", heads, vocab, ab_cols, True)
     nih_te_S, nih_te_pat = _g1(NE, NP, "test", heads, vocab, ab_cols)
     vin_cal_S, vin_cal_pat = _g1(VE, VP, "calib", heads, vocab, ab_cols)
@@ -152,7 +152,7 @@ def main():
 
     # ===================== (D) weighted conformal NIH->VinDr =====================
     print("=" * 74)
-    print("(D) Weighted (importance-weighted) conformal, NIH->VinDr in-vocab G1   [review #11]")
+    print("(D) Weighted (importance-weighted) conformal, NIH->VinDr in-vocab G1")
     w = estimate_shift_weights(nih_cal_E, vin_te_E)
     w = np.asarray(w[0] if isinstance(w, tuple) else w).ravel()
     qw = weighted_split_conformal_threshold(nih_cal_S, w, args.alpha)
@@ -175,7 +175,7 @@ def main():
 
     # ===================== (B) G2 accepted sensitivity/specificity =====================
     print("=" * 74)
-    print(f"(B) G2 accepted sensitivity/specificity (alpha_risk={args.alpha_risk})   [review #5]")
+    print(f"(B) G2 accepted sensitivity/specificity (alpha_risk={args.alpha_risk})")
     n_cal = _g2_load(NE, NP, "calib", heads, vocab, nidx)
     n_te = _g2_load(NE, NP, "test", heads, vocab, nidx)
     v_cal = _g2_load(VE, VP, "calib", heads, vocab, nidx)
@@ -194,7 +194,7 @@ def main():
 
     # ===================== (C) G2 sample-size =====================
     print("=" * 74)
-    print(f"(C) G2 sample-size: local VinDr calib m -> acceptance + accepted-error, K={args.ksub}   [review #7]")
+    print(f"(C) G2 sample-size: local VinDr calib m -> acceptance + accepted-error, K={args.ksub}")
     Ac, yc, _ = v_cal
     A, y, _ = v_te
     rng = np.random.default_rng(seed)

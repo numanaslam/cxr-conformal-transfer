@@ -133,9 +133,9 @@ because the guarantees are marginal and a single rate above the target does not 
 | `scripts/` | one script per stage (`s00` to `s40`), dataset builders and figure scripts |
 | `configs/` | configuration files for each dataset and encoder (`nih`, `vindr`, `iuxray`, `iuxray_nihtax`, and `*_clip`) |
 | `tests/test_smoke.py` | checks of the split, the valve and the conformal routines; needs no data |
-| `experiments/rerun_20261002/` | base pipeline run (all NIH images; Article S1) |
-| `experiments/revision1/` | one image per patient at NIH; three-dataset transfer matrix |
-| `experiments/revision2/` | 20 re-splits and 200 repartitions |
+| `experiments/base_run/` | base pipeline run (all NIH images; Article S1) |
+| `experiments/three_dataset/` | one image per patient at NIH; three-dataset transfer matrix |
+| `experiments/resplits/` | 20 re-splits and 200 repartitions |
 | `experiments/final/` | CLIP encoder, further checks, simulation, network head |
 | `RUN_FROM_SCRATCH.md` | step-by-step instructions with downloads and expected counts |
 
@@ -153,7 +153,7 @@ Result files are machine-readable JSON; console logs are plain text.
   (`nih`, `vindr`, `iuxray`).
 - `s35_multisite*.json` has a `primary` block (per-site metrics, the nine pairs with rates and bootstrap
   intervals, the domain-classifier AUROC) and a `resplits` block (per-seed values and summaries).
-- `s36_revision2.json` has the blocks `primary` (each pair under the symmetric rule, the uncorrected
+- `s36_resplits.json` has the blocks `primary` (each pair under the symmetric rule, the uncorrected
   margin, the fixed confidence threshold and the one-sided rule at 0.10, 0.05 and 0.02), `redraws`
   (200 repartitions; keys such as `g1|c->d`, `acc|c->d` and `cer|c->d`), `resplits`, `sample_size`
   and `shift`.
@@ -201,7 +201,7 @@ replace `^` with `\`.
 5. **Re-splits, repartitions, comparators and workload; further checks; network head:**
 
     ```
-    python -m scripts.s36_revision2 --config configs/vindr.yaml ^
+    python -m scripts.s36_resplits --config configs/vindr.yaml ^
         --sites vindr=configs/vindr.yaml iuxray=configs/iuxray_nihtax.yaml --seeds 20 --redraws 200
     python -m scripts.s37_conditional_and_g1 --config configs/vindr.yaml ^
         --sites vindr=configs/vindr.yaml iuxray=configs/iuxray_nihtax.yaml --redraws 200
@@ -223,9 +223,9 @@ replace `^` with `\`.
 
     ```
     python scripts/make_fig_multisite.py ^
-        --json experiments/revision1/s35_multisite_nihtax.json ^
-        --resplits experiments/revision2/s36_revision2.json ^
-        --out fig_transfer.png --cmc --height-in 4.3
+        --json experiments/three_dataset/s35_multisite_nihtax.json ^
+        --resplits experiments/resplits/s36_resplits.json ^
+        --out fig_transfer.png --print --height-in 4.3
     python -m scripts.s13_figures --config configs/vindr.yaml
     ```
 
@@ -240,31 +240,31 @@ replace `^` with `\`.
 
 | Item | Script | Result file |
 |---|---|---|
-| Table 2 (the three datasets) | `build_iuxray.py`, `count_manifest.py`, `s35` | `experiments/revision1/s35_nihtax_console.txt` |
-| Table 3 (which studies fit each quantity) | `s31`, `s35`, `s36` | the code (`_fit_site` in `scripts/s36_revision2.py`) |
-| Table 4, primary split | `s35` | `experiments/revision1/s35_multisite_nihtax.json` |
-| Table 4, re-split means and repartitions above target | `s36` | `experiments/revision2/s36_revision2.json` |
+| Table 2 (the three datasets) | `build_iuxray.py`, `count_manifest.py`, `s35` | `experiments/three_dataset/s35_nihtax_console.txt` |
+| Table 3 (which studies fit each quantity) | `s31`, `s35`, `s36` | the code (`_fit_site` in `scripts/s36_resplits.py`) |
+| Table 4, primary split | `s35` | `experiments/three_dataset/s35_multisite_nihtax.json` |
+| Table 4, re-split means and repartitions above target | `s36` | `experiments/resplits/s36_resplits.json` |
 | Fig. 2 | `make_fig_multisite.py` | the two files above |
 | Table 5, CLIP encoder | `s35`, `s36` with `*_clip.yaml` | `experiments/final/clip_console.txt` |
 | Table 5, one-hidden-layer network | `s39` | `experiments/final/s39_console.txt` |
-| Table 5, full Indiana labels | `s35` (full set) | `experiments/revision1/s35_multisite.json` |
-| Table 6, calibration size, uncorrected margin, fixed threshold, workload | `s36` | `experiments/revision2/s36_revision2.json` |
+| Table 5, full Indiana labels | `s35` (full set) | `experiments/three_dataset/s35_multisite.json` |
+| Table 6, calibration size, uncorrected margin, fixed threshold, workload | `s36` | `experiments/resplits/s36_resplits.json` |
 | Table 6, conditional-error rule and simpler G1 scores; prevalence matching | `s37` | `experiments/final/s37_console.txt` |
-| Table 6, importance weighting | `s27` | `experiments/rerun_20261002/results/s27_weighted_sweep.json` |
-| Predictor performance and calibration | `s09`, `s19`, `s26` | `experiments/rerun_20261002/results/` |
+| Table 6, importance weighting | `s27` | `experiments/base_run/results/s27_weighted_sweep.json` |
+| Predictor performance and calibration | `s09`, `s19`, `s26` | `experiments/base_run/results/` |
 | Checks of Propositions 1 and 2 | `s38`, `s40` | `experiments/final/s38_validity_simulation.json`; `s40` prints its result |
 
 **Supplemental Information (Article S1)**
 
 | Item | Script | Result files |
 |---|---|---|
-| Section S1, results on all NIH images | `s31`, `s33` | `experiments/rerun_20261002/results/` |
-| One image per patient at NIH | `s31`, `s33`, `s34` | `experiments/revision1/` |
-| Calibration protocols, per-concept results, selective rule, concept layer | `s09`, `s10`, `s19`, `s20`, `s23`, `s25`, `s30`, `s32` | `experiments/rerun_20261002/` |
-| Valve statistic, novelty detection, importance weighting | `s05`, `s24`, `s27` | `experiments/rerun_20261002/` |
-| Simulation (Table S10), G1 with simpler scores (Table S11), calibration size (Table S12) | `s38`, `s37`, `s36` | `experiments/final/`, `experiments/revision2/` |
-| Second encoder (Table S13), network head (Table S14), measured shift (Table S15) | CLIP configurations, `s39`, `s35`, `s36` | `experiments/final/`, `experiments/revision1/`, `experiments/revision2/` |
-| Full results (Tables S16 and S17), label definition (Table S18), workload (Table S19) | `s35`, `s36` | `experiments/revision1/`, `experiments/revision2/` |
+| Section S1, results on all NIH images | `s31`, `s33` | `experiments/base_run/results/` |
+| One image per patient at NIH | `s31`, `s33`, `s34` | `experiments/three_dataset/` |
+| Calibration protocols, per-concept results, selective rule, concept layer | `s09`, `s10`, `s19`, `s20`, `s23`, `s25`, `s30`, `s32` | `experiments/base_run/` |
+| Valve statistic, novelty detection, importance weighting | `s05`, `s24`, `s27` | `experiments/base_run/` |
+| Simulation (Table S10), G1 with simpler scores (Table S11), calibration size (Table S12) | `s38`, `s37`, `s36` | `experiments/final/`, `experiments/resplits/` |
+| Second encoder (Table S13), network head (Table S14), measured shift (Table S15) | CLIP configurations, `s39`, `s35`, `s36` | `experiments/final/`, `experiments/three_dataset/`, `experiments/resplits/` |
+| Full results (Tables S16 and S17), label definition (Table S18), workload (Table S19) | `s35`, `s36` | `experiments/three_dataset/`, `experiments/resplits/` |
 
 ## Calibration protocols
 

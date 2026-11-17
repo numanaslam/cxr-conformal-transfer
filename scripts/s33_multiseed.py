@@ -18,7 +18,7 @@ Nine logistic fits on ~78k x 512 per seed: expect a few minutes per seed on CPU.
     python -m scripts.s33_multiseed --config configs/vindr.yaml --seeds 0 1 2 3 4
     python -m scripts.s33_multiseed --config configs/vindr.yaml --seeds 0 1 2 3 4 --one-per-patient
 
---one-per-patient (revision 1) keeps one image per patient in each seed's NIH calibration and test
+--one-per-patient keeps one image per patient in each seed's NIH calibration and test
 splits for the conformal rates (the same selection rule as s31 and s34, draw 0). Concept AUROC and
 ECE stay on all test images. It writes s33_multiseed_onepp.json unless --out is given.
 """
