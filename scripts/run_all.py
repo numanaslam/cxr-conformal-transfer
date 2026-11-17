@@ -92,6 +92,8 @@ def build_stages(a):
     mod("s31", "review", "s31_clean_protocol", V, "disjoint calibration data, all four settings")
     mod("s32", "review", "s32_mlp_comparator", V, "nonlinear same-feature comparator")
     mod("s33", "review", "s33_multiseed", V, "repeat over split seeds", extra=["--seeds"] + [str(s) for s in a.seeds])
+    mod("s34", "review", "s34_one_image_per_patient", V, "one image per patient at NIH; merged Nodule/Mass")
+    mod("s35", "review", "s35_multisite", V, "three sites (NIH, VinDr, IU X-ray), every direction")
 
     # ---- stages that re-run a network on images (GPU)
     mod("s14", "gpu", "s14_concept_saliency", V, "concept saliency figure", gpu=True)

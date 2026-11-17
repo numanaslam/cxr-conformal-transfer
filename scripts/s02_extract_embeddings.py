@@ -36,7 +36,7 @@ def main():
     os.makedirs(cfg.paths.embeddings, exist_ok=True)
     device = cfg.compute.device
     model, preprocess, tokenizer = load_biomedclip(device, getattr(cfg.model, "hf_id"))
-    print(f"[s02] BiomedCLIP loaded on {device}")
+    print(f"[s02] encoder {getattr(cfg.model, 'hf_id')} loaded on {device}")
 
     # concept-bank text embeddings (prompt-ensemble means)
     bank = B.load_bank(getattr(cfg.concepts, "bank", "default"))

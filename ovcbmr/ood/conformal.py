@@ -61,7 +61,8 @@ def crc_threshold(risks, lambdas, n, alpha=0.10, B=1.0):
     n       : calibration set size.
     Returns (lambda_hat, index) — the smallest lambda whose CRC bound
         (n * R_hat(lambda) + B) / (n + 1) <= alpha
-    holds; or (None, -1) if no lambda satisfies it.
+    holds; or (None, -1) if no lambda satisfies it. Callers must then defer every study
+    (lambda = inf), which keeps the guarantee for every calibration sample.
     """
     for i, lam in enumerate(lambdas):
         bound = (n * float(risks[i]) + B) / (n + 1)

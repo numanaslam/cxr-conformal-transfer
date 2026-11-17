@@ -72,7 +72,7 @@ def main():
                     arrowprops=dict(arrowstyle="->", color="#8a5410"))
     ax.set_xlabel("unexplained valve score s(x)"); ax.set_ylabel("density")
     ax.set_title("Valve-score shift: NIH → VinDr"); ax.legend(fontsize=8, loc="upper left")
-    fig.tight_layout(); fig.savefig(os.path.join(res, "fig_score_shift.png"), dpi=200); plt.close(fig)
+    fig.tight_layout(); fig.savefig(os.path.join(res, "fig_score_shift.png"), dpi=600); plt.close(fig)  # CMC: supplementary figures need at least 300 dpi
 
     # ---------------- Figure 2: coverage calibration ----------------
     alphas = [0.01, 0.02, 0.03, 0.05, 0.075, 0.10, 0.15, 0.20]

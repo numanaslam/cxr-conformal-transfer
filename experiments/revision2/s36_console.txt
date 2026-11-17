@@ -1,0 +1,55 @@
+# s36_revision2, GPU machine, 2026-11-04. Sites nih, vindr, iuxray (matched labels); --seeds 20 --redraws 200.
+# Per-seed G1 lines of the 20 re-splits omitted; they are in s36_revision2.json (per_seed).
+[s35] vindr: calib 7511 (halves 3754/3757), test 7489
+[s35] iuxray: calib 1133 (halves 570/563), test 1128
+
+=== primary split: one-sided targets, baselines, workload per 1000 deployed studies ===
+  nih -> nih         G2 acc 0.50 cer 0.096 | per 1000: cleared 373 flagged 126 deferred 501 missed 61 | 1s@0.1: acc 0.65 miss 0.090  1s@0.05: acc 0.44 miss 0.053  1s@0.02: acc 0.25 miss 0.022 | naive cer 0.096 acc 0.50 | fixed-0.8 cer 0.032 acc 0.22
+  nih -> vindr       G2 acc 0.31 cer 0.041 | per 1000: cleared 181 flagged 133 deferred 686 missed 9 | 1s@0.1: acc 0.46 miss 0.019  1s@0.05: acc 0.26 miss 0.007  1s@0.02: acc 0.13 miss 0.002 | naive cer 0.041 acc 0.31 | fixed-0.8 cer 0.004 acc 0.09
+  nih -> iuxray      G2 acc 0.58 cer 0.083 | per 1000: cleared 500 flagged 78 deferred 422 missed 81 | 1s@0.1: acc 0.72 miss 0.124  1s@0.05: acc 0.52 miss 0.073  1s@0.02: acc 0.32 miss 0.029 | naive cer 0.083 acc 0.58 | fixed-0.8 cer 0.037 acc 0.32
+  vindr -> nih       G2 acc 0.65 cer 0.146 | per 1000: cleared 479 flagged 172 deferred 349 missed 86 | 1s@0.1: acc 1.00 miss 0.154  1s@0.05: acc 0.85 miss 0.125  1s@0.02: acc 0.63 miss 0.080 | naive cer 0.146 acc 0.65 | fixed-0.8 cer 0.032 acc 0.22
+  vindr -> vindr     G2 acc 0.49 cer 0.085 | per 1000: cleared 277 flagged 209 deferred 514 missed 18 | 1s@0.1: acc 1.00 miss 0.079  1s@0.05: acc 0.75 miss 0.046  1s@0.02: acc 0.47 miss 0.017 | naive cer 0.085 acc 0.49 | fixed-0.8 cer 0.004 acc 0.09
+  vindr -> iuxray    G2 acc 0.72 cer 0.123 | per 1000: cleared 606 flagged 118 deferred 276 missed 119 | 1s@0.1: acc 1.00 miss 0.220  1s@0.05: acc 0.87 miss 0.175  1s@0.02: acc 0.71 miss 0.113 | naive cer 0.123 acc 0.72 | fixed-0.8 cer 0.037 acc 0.32
+  iuxray -> nih      G2 acc 0.56 cer 0.215 | per 1000: cleared 186 flagged 379 deferred 435 missed 26 | 1s@0.1: acc 1.00 miss 0.075  1s@0.05: acc 0.68 miss 0.040  1s@0.02: acc 0.38 miss 0.012 | naive cer 0.223 acc 0.58 | fixed-0.8 cer 0.032 acc 0.22
+  iuxray -> vindr    G2 acc 0.62 cer 0.312 | per 1000: cleared 61 flagged 561 deferred 378 missed 3 | 1s@0.1: acc 1.00 miss 0.015  1s@0.05: acc 0.72 miss 0.005  1s@0.02: acc 0.48 miss 0.000 | naive cer 0.323 acc 0.64 | fixed-0.8 cer 0.004 acc 0.09
+  iuxray -> iuxray   G2 acc 0.59 cer 0.090 | per 1000: cleared 303 flagged 284 deferred 413 missed 36 | 1s@0.1: acc 1.00 miss 0.102  1s@0.05: acc 0.72 miss 0.060  1s@0.02: acc 0.39 miss 0.015 | naive cer 0.098 acc 0.62 | fixed-0.8 cer 0.037 acc 0.32
+
+=== measured shift per pair of sites ===
+  nih|vindr      prevalence 0.31/0.30  KS A|normal 0.217  KS A|abnormal 0.250  KS s|known 0.262  domain AUROC 0.992
+  iuxray|nih     prevalence 0.41/0.31  KS A|normal 0.262  KS A|abnormal 0.119  KS s|known 0.067  domain AUROC 0.958
+  iuxray|vindr   prevalence 0.41/0.30  KS A|normal 0.470  KS A|abnormal 0.289  KS s|known 0.316  domain AUROC 0.996
+
+=== 200 calibration redraws, heads fixed: mean (sd) [2.5, 97.5] fraction above target ===
+  nih -> nih         G1 0.050 (0.010) [0.032, 0.071] above 0.46 | G2 0.098 (0.008) [0.084, 0.114] above 0.43 | naive G2 0.099 above 0.45
+  nih -> vindr       G1 0.078 (0.012) [0.058, 0.100] above 1.00 | G2 0.046 (0.003) [0.040, 0.053] above 0.00 | naive G2 0.046 above 0.00
+  nih -> iuxray      G1 0.028 (0.007) [0.016, 0.044] above 0.00 | G2 0.084 (0.007) [0.070, 0.097] above 0.01 | naive G2 0.084 above 0.01
+  vindr -> nih       G1 0.033 (0.005) [0.024, 0.044] above 0.01 | G2 0.161 (0.019) [0.129, 0.191] above 1.00 | naive G2 0.162 above 1.00
+  vindr -> vindr     G1 0.050 (0.007) [0.038, 0.063] above 0.47 | G2 0.099 (0.006) [0.087, 0.110] above 0.42 | naive G2 0.099 above 0.43
+  vindr -> iuxray    G1 0.019 (0.005) [0.010, 0.028] above 0.00 | G2 0.141 (0.032) [0.091, 0.202] above 0.92 | naive G2 0.141 above 0.92
+  iuxray -> nih      G1 0.089 (0.015) [0.056, 0.118] above 1.00 | G2 0.203 (0.022) [0.159, 0.244] above 1.00 | naive G2 0.205 above 1.00
+  iuxray -> vindr    G1 0.150 (0.025) [0.099, 0.196] above 1.00 | G2 0.299 (0.043) [0.198, 0.365] above 1.00 | naive G2 0.302 above 1.00
+  iuxray -> iuxray   G1 0.048 (0.016) [0.019, 0.080] above 0.45 | G2 0.100 (0.015) [0.074, 0.129] above 0.43 | naive G2 0.101 above 0.52
+
+=== sample size, clean protocol, over redraws ===
+[s36] sample size vindr m=100: acc 0.49  cer mean 0.096 p95 0.173 above 0.41  G1 mean 0.033 p95 0.095 (known 27)
+[s36] sample size vindr m=200: acc 0.51  cer mean 0.096 p95 0.153 above 0.45  G1 mean 0.043 p95 0.098 (known 52)
+[s36] sample size vindr m=400: acc 0.53  cer mean 0.099 p95 0.134 above 0.45  G1 mean 0.047 p95 0.086 (known 107)
+[s36] sample size vindr m=800: acc 0.52  cer mean 0.099 p95 0.121 above 0.45  G1 mean 0.049 p95 0.072 (known 214)
+[s36] sample size vindr m=1500: acc 0.53  cer mean 0.099 p95 0.121 above 0.44  G1 mean 0.048 p95 0.068 (known 400)
+[s36] sample size vindr m=full: acc 0.54  cer mean 0.099 p95 0.109 above 0.46  G1 mean 0.050 p95 0.061 (known 2001)
+[s36] sample size iuxray m=100: acc 0.59  cer mean 0.098 p95 0.182 above 0.48  G1 mean 0.032 p95 0.086 (known 34)
+[s36] sample size iuxray m=200: acc 0.61  cer mean 0.096 p95 0.142 above 0.41  G1 mean 0.045 p95 0.095 (known 68)
+[s36] sample size iuxray m=400: acc 0.63  cer mean 0.098 p95 0.138 above 0.36  G1 mean 0.047 p95 0.086 (known 135)
+[s36] sample size iuxray m=800: acc 0.63  cer mean 0.097 p95 0.125 above 0.42  G1 mean 0.048 p95 0.077 (known 274)
+[s36] sample size iuxray m=full: acc 0.63  cer mean 0.098 p95 0.122 above 0.44  G1 mean 0.049 p95 0.078 (known 388)
+
+=== 20 re-splits with retrained heads (summary) ===
+  nih -> nih         G1 0.049 (0.010) [0.035, 0.068] above 0.40 | G2 0.102 (0.007) [0.090, 0.115] above 0.75 | acc 0.50
+  nih -> vindr       G1 0.085 (0.018) [0.054, 0.114] above 1.00 | G2 0.042 (0.011) [0.024, 0.059] above 0.00 | acc 0.31
+  nih -> iuxray      G1 0.028 (0.008) [0.013, 0.037] above 0.00 | G2 0.082 (0.014) [0.057, 0.102] above 0.15 | acc 0.58
+  vindr -> nih       G1 0.028 (0.006) [0.016, 0.039] above 0.00 | G2 0.162 (0.017) [0.126, 0.184] above 1.00 | acc 0.70
+  vindr -> vindr     G1 0.048 (0.006) [0.037, 0.056] above 0.45 | G2 0.100 (0.006) [0.089, 0.111] above 0.60 | acc 0.53
+  vindr -> iuxray    G1 0.018 (0.007) [0.007, 0.028] above 0.00 | G2 0.135 (0.032) [0.082, 0.186] above 0.85 | acc 0.74
+  iuxray -> nih      G1 0.078 (0.014) [0.055, 0.106] above 1.00 | G2 0.192 (0.025) [0.153, 0.233] above 1.00 | acc 0.56
+  iuxray -> vindr    G1 0.139 (0.044) [0.088, 0.224] above 1.00 | G2 0.294 (0.067) [0.174, 0.400] above 1.00 | acc 0.61
+  iuxray -> iuxray   G1 0.046 (0.013) [0.028, 0.071] above 0.45 | G2 0.093 (0.014) [0.071, 0.117] above 0.35 | acc 0.61

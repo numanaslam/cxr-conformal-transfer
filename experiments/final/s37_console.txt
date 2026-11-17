@@ -1,0 +1,26 @@
+# s37_conditional_and_g1, GPU machine, 2026-11-10 (nih, vindr, iuxray matched labels; --redraws 200)
+=== A. conditional-risk rule, P(error | accept) <= r with prob. >= 0.95 (primary split) ===
+  every pair: acc 0.00 at r = 0.10 and r = 0.15 (CRC on the same pairs: acc 0.31 to 0.72, err|acc 0.131 to 0.502)
+=== A. over 200 redraws: mean acceptance, mean err|acc, share of draws err|acc > r ===
+  nih -> nih         r=0.1: acc 0.00 err|acc 0.000 above 0.00 | r=0.15: acc 0.00 err|acc 0.000 above 0.00
+  nih -> vindr       r=0.1: acc 0.00 err|acc 0.000 above 0.00 | r=0.15: acc 0.00 err|acc 0.000 above 0.00
+  nih -> iuxray      r=0.1: acc 0.00 err|acc 0.000 above 0.00 | r=0.15: acc 0.00 err|acc 0.000 above 0.00
+  vindr -> nih       r=0.1: acc 0.02 err|acc 0.020 above 0.12 | r=0.15: acc 0.19 err|acc 0.140 above 0.68
+  vindr -> vindr     r=0.1: acc 0.01 err|acc 0.008 above 0.01 | r=0.15: acc 0.13 err|acc 0.069 above 0.01
+  vindr -> iuxray    r=0.1: acc 0.03 err|acc 0.012 above 0.07 | r=0.15: acc 0.22 err|acc 0.073 above 0.23
+  iuxray -> nih      r=0.1: acc 0.00 err|acc 0.007 above 0.02 | r=0.15: acc 0.09 err|acc 0.139 above 0.42
+  iuxray -> vindr    r=0.1: acc 0.00 err|acc 0.007 above 0.02 | r=0.15: acc 0.11 err|acc 0.156 above 0.42
+  iuxray -> iuxray   r=0.1: acc 0.00 err|acc 0.001 above 0.00 | r=0.15: acc 0.07 err|acc 0.029 above 0.01
+=== B/C. G1 at alpha = 0.05, five scores (G1, total, normal, oov) ===
+  valve        nih->nih .046 .021 .011 .022 | nih->vindr .077 .027 .006 .053 | nih->iuxray .026 .013 .000 .072 | vindr->nih .038 .018 .009 .011 | vindr->vindr .061 .020 .003 .034 | vindr->iuxray .018 .010 .000 .058 | iuxray->nih .098 .049 .026 .124 | iuxray->vindr .173 .064 .022 .092 | iuxray->iuxray .062 .028 .001 .101
+  gap          .055 .109 .134 .045 | .004 .012 .016 .014 | .064 .162 .224 .116 | .215 .368 .435 .303 | .055 .142 .175 .174 | .263 .523 .690 .362 | .045 .092 .115 .011 | .003 .007 .009 .005 | .046 .133 .189 .072
+  abnormality  .060 .020 .003 .045 | .066 .018 .001 .000 | .015 .007 .000 .029 | .058 .020 .003 .045 | .062 .017 .001 .000 | .015 .007 .000 .029 | .096 .034 .008 .045 | .100 .028 .001 .005 | .034 .014 .000 .043
+  entropy      .051 .019 .005 .045 | .067 .018 .001 .000 | .018 .008 .000 .029 | .040 .016 .005 .045 | .059 .016 .000 .000 | .018 .008 .000 .029 | .066 .026 .008 .056 | .091 .025 .001 .005 | .031 .012 .000 .029
+  binary_unc   .046 .037 .031 .090 | .091 .069 .059 .082 | .052 .024 .009 .014 | .025 .021 .017 .067 | .047 .035 .030 .048 | .023 .013 .007 .014 | .054 .044 .037 .090 | .104 .079 .069 .101 | .059 .028 .012 .014
+  (pair order as for valve)
+=== D. Indiana subsampled to abnormal prevalence 0.31, 200 draws: mean G2 acc / cer [2.5, 97.5] above ===
+  nih->iuxray    acc 0.61  cer 0.065 [0.057, 0.075]  above 0.00
+  vindr->iuxray  acc 0.75  cer 0.097 [0.088, 0.106]  above 0.32
+  iuxray->nih    acc 0.58  cer 0.212 [0.180, 0.245]  above 1.00
+  iuxray->vindr  acc 0.63  cer 0.302 [0.215, 0.359]  above 1.00
+  iuxray->iuxray acc 0.61  cer 0.093 [0.069, 0.119]  above 0.30

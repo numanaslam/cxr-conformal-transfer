@@ -64,7 +64,7 @@ def _fit(Ac, yc, alpha, loss_kind):
     lambdas = sorted(set(np.quantile(conf, np.linspace(0, 1, 201)).tolist()))
     risks = [float(((conf >= lam) * loss).mean()) for lam in lambdas]
     lam, _ = crc_threshold(risks, lambdas, n=len(conf), alpha=alpha, B=1.0)
-    return tau, (lam if lam is not None else lambdas[-1])
+    return tau, (lam if lam is not None else float("inf"))
 
 
 def _deploy(dp, tau, lam, n_boot, seed):

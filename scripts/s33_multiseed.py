@@ -16,6 +16,11 @@ all four settings (on-site at each hospital and both transfer directions).
 Nine logistic fits on ~78k x 512 per seed: expect a few minutes per seed on CPU.
 
     python -m scripts.s33_multiseed --config configs/vindr.yaml --seeds 0 1 2 3 4
+    python -m scripts.s33_multiseed --config configs/vindr.yaml --seeds 0 1 2 3 4 --one-per-patient
+
+--one-per-patient (revision 1) keeps one image per patient in each seed's NIH calibration and test
+splits for the conformal rates (the same selection rule as s31 and s34, draw 0). Concept AUROC and
+ECE stay on all test images. It writes s33_multiseed_onepp.json unless --out is given.
 """
 from __future__ import annotations
 import argparse
@@ -119,7 +124,7 @@ def _lam(D, tau, alpha):
     lambdas = sorted(set(np.quantile(conf, np.linspace(0, 1, 201)).tolist()))
     risks = [float(((conf >= lam) * loss).mean()) for lam in lambdas]
     lam, _ = crc_threshold(risks, lambdas, n=len(conf), alpha=alpha, B=1.0)
-    return float(lam if lam is not None else lambdas[-1])
+    return float(lam) if lam is not None else float("inf")   # infeasible: defer every study
 
 
 def _g2(D, tau, lam):
@@ -149,8 +154,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/vindr.yaml")
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2, 3, 4])
-    ap.add_argument("--out", default="s33_multiseed.json", help="file name under the results folder")
+    ap.add_argument("--out", default=None, help="file name under the results folder")
+    ap.add_argument("--one-per-patient", action="store_true",
+                    help="one image per patient in the NIH calib and test splits for G1 and G2")
     args, _ = ap.parse_known_args()
+    if args.out is None:
+        args.out = "s33_multiseed_onepp.json" if args.one_per_patient else "s33_multiseed.json"
     cfg = load_config(args.config)
     import numpy as np
     ch = cfg.cross_hospital
@@ -176,6 +185,12 @@ def main():
             print(f"[s33] seed {seed}: no Normal head, skipped"); continue
         dv = lambda E, Y: _derive(E, Y, heads, vocab, nidx, abn_idx)   # noqa: E731
         N_val, N_cal, N_te = (dv(En[m[k]], Yn[m[k]]) for k in ("val", "calib", "test"))
+        N_te_all = N_te
+        if args.one_per_patient:
+            from scripts.s31_clean_protocol import one_per_patient_mask
+            sel = lambda D, k: {key: v[one_per_patient_mask(Pn[m[k]].tolist())]   # noqa: E731
+                                for key, v in D.items()}
+            N_cal, N_te = sel(N_cal, "calib"), sel(N_te, "test")
 
         vcal = np.array([_unit_hash(seed, p) < 0.5 for p in Pv])
         vtun = np.array([_unit_hash(seed + 1000, p) < 0.5 for p in Pv])
@@ -186,10 +201,10 @@ def main():
         qV = split_conformal_threshold(V_cal["s"][V_cal["known"]].tolist(), a1)
         tN, tV = _tau(N_val), _tau(V_tune)
         lN, lV = _lam(N_cal, tN, a2), _lam(V_fit, tV, a2)
-        auN, ecN = _concept_stats(N_te, abn_idx)
+        auN, ecN = _concept_stats(N_te_all, abn_idx)
         auV, ecV = _concept_stats(V_te, abn_idx)
         r = {"seed": seed, "auroc_nih": auN, "auroc_vindr": auV, "ece_nih": ecN, "ece_vindr": ecV,
-             "abn_auroc_nih": auroc(N_te["A"].tolist(), N_te["y"].tolist()),
+             "abn_auroc_nih": auroc(N_te_all["A"].tolist(), N_te_all["y"].tolist()),
              "abn_auroc_vindr": auroc(V_te["A"].tolist(), V_te["y"].tolist()),
              "g1_nih_onsite": _ffr(N_te, qN), "g1_nih_to_vindr": _ffr(V_te, qN),
              "g1_vindr_onsite": _ffr(V_te, qV), "g1_vindr_to_nih": _ffr(N_te, qV)}
@@ -217,7 +232,8 @@ def main():
     os.makedirs(cfg.paths.results, exist_ok=True)
     op = os.path.join(cfg.paths.results, args.out)
     with open(op, "w") as f:
-        json.dump({"seeds": args.seeds, "per_seed": rows, "summary": summary}, f, indent=2)
+        json.dump({"seeds": args.seeds, "one_per_patient": bool(args.one_per_patient),
+                   "per_seed": rows, "summary": summary}, f, indent=2)
     print(f"[s33] wrote {op}")
 
 

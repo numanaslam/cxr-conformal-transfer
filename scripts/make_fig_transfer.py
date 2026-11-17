@@ -23,13 +23,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", default="experiments/results")
     ap.add_argument("--out", default="docs/fig_transfer.png")
+    ap.add_argument("--suffix", default="", help='"_onepp" for the one-image-per-patient results')
     a = ap.parse_args()
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    ms = json.load(open(os.path.join(a.results, "s33_multiseed.json")))
-    cp = json.load(open(os.path.join(a.results, "s31_clean_protocol.json")))["protocols"]["clean"]
+    ms = json.load(open(os.path.join(a.results, f"s33_multiseed{a.suffix}.json")))
+    cp = json.load(open(os.path.join(a.results, f"s31_clean_protocol{a.suffix}.json")))["protocols"]["clean"]
     seeds = ms["per_seed"]
 
     panels = [

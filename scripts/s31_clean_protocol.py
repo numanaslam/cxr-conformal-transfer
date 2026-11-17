@@ -17,6 +17,11 @@ and the conditional error and missed-abnormal rates among accepted cases. Mean a
 ECE and Brier score are printed for both protocols. Cached embeddings, CPU, no GPU.
 
     python -m scripts.s31_clean_protocol --config configs/vindr.yaml
+    python -m scripts.s31_clean_protocol --config configs/vindr.yaml --one-per-patient
+
+--one-per-patient (revision 1) keeps one image per patient in the NIH calibration and test splits
+(draw 0 of s34), so that the NIH statements are exact rather than approximate under the 3.6
+images per patient of NIH; NIH val keeps all images. It writes s31_clean_protocol_onepp.json.
 """
 from __future__ import annotations
 import argparse
@@ -65,6 +70,20 @@ def _halves(D, salt):
     import numpy as np
     m = np.array([_h01(p, salt) < 0.5 for p in D["pat"]])
     return _take(D, m), _take(D, ~m)
+
+
+def one_per_patient_mask(pats, draw=0):
+    """Boolean mask keeping, for each patient, the image with the smallest hash of
+    (draw, patient, position). Identical to the selection in s34."""
+    import numpy as np
+    best = {}
+    for i, p in enumerate(pats):
+        h = hashlib.md5(f"onepp:{draw}:{p}:{i}".encode("utf-8")).hexdigest()
+        if p not in best or h < best[p][0]:
+            best[p] = (h, i)
+    mask = np.zeros(len(pats), dtype=bool)
+    mask[[i for _, i in best.values()]] = True
+    return mask
 
 
 def _refit_platt(heads, vocab, D):
@@ -132,7 +151,7 @@ def _lam(D, tau, alpha, kind):
     lambdas = sorted(set(np.quantile(conf, np.linspace(0, 1, 201)).tolist()))
     risks = [float(((conf >= lam) * loss).mean()) for lam in lambdas]
     lam, _ = crc_threshold(risks, lambdas, n=len(conf), alpha=alpha, B=1.0)
-    return float(lam if lam is not None else lambdas[-1])
+    return float(lam) if lam is not None else float("inf")   # infeasible: defer every study
 
 
 def _g2(D, tau, lam, kind, alpha, nb, seed):
@@ -164,6 +183,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/vindr.yaml")
     ap.add_argument("--nboot", type=int, default=0)
+    ap.add_argument("--one-per-patient", action="store_true",
+                    help="one image per patient in the NIH calib and test splits (draw 0)")
     args, _ = ap.parse_known_args()
     cfg = load_config(args.config)
     ch = cfg.cross_hospital
@@ -185,6 +206,10 @@ def main():
     if any(x is None for x in (n_cal, n_te, v_cal, v_te)):
         print("[s31] missing an embeddings split (need NIH calib/test and VinDr calib/test)."); return
 
+    if args.one_per_patient:
+        n_cal = _take(n_cal, one_per_patient_mask(n_cal["pat"]))
+        n_te = _take(n_te, one_per_patient_mask(n_te["pat"]))
+        print(f"[s31] one image per patient at NIH: calib {len(n_cal['pat'])}, test {len(n_te['pat'])}")
     if n_val is not None:
         n_tune, n_fit, src = n_val, n_cal, "NIH val"
     else:
@@ -200,7 +225,8 @@ def main():
         "clean": {"heads": _refit_platt(heads, vocab, n_tune),
                   "n_tune": n_tune, "n_fit": n_fit, "v_tune": v_tune, "v_fit": v_fit},
     }
-    out = {"alpha_flag": a1, "alpha_risk": a2, "n_boot": nb, "clean_tune_source": src, "protocols": {}}
+    out = {"alpha_flag": a1, "alpha_risk": a2, "n_boot": nb, "clean_tune_source": src,
+           "one_per_patient": bool(args.one_per_patient), "protocols": {}}
     settings = ("NIH on-site", "NIH->VinDr", "VinDr on-site", "VinDr->NIH")
 
     for pname, pr in protocols.items():
@@ -252,7 +278,8 @@ def main():
         print(f"  G2 {s:<15} accept {a['accept']:.2f} -> {b['accept']:.2f} | "
               f"confident-error {a['controlled']:.3f} -> {b['controlled']:.3f}")
     os.makedirs(cfg.paths.results, exist_ok=True)
-    op = os.path.join(cfg.paths.results, "s31_clean_protocol.json")
+    op = os.path.join(cfg.paths.results,
+                      "s31_clean_protocol_onepp.json" if args.one_per_patient else "s31_clean_protocol.json")
     with open(op, "w") as f:
         json.dump(out, f, indent=2)
     print(f"[s31] wrote {op}")

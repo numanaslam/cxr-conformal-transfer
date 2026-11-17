@@ -1,0 +1,19 @@
+# s35_multisite, GPU machine, 2026-11-04 (NIH one image per patient; IU X-ray all MeSH-coded studies)
+  calibrated -> deployed                 G1 [CI]  accept           conf-err [CI]  err|acc  1-sided
+  nih -> nih               0.046 [0.033,0.061]    0.50   0.096 [0.086,0.107]    0.192    0.090
+  nih -> vindr             0.077 [0.066,0.090]    0.31   0.041 [0.037,0.046]    0.131    0.019
+  nih -> iuxray            0.026 [0.010,0.044]    0.54   0.225 [0.206,0.243]    0.416    0.307
+  vindr -> nih             0.038 [0.026,0.052]    0.65   0.146 [0.134,0.158]    0.224    0.154
+  vindr -> vindr           0.061 [0.051,0.072]    0.49   0.085 [0.079,0.092]    0.176    0.079
+  vindr -> iuxray          0.018 [0.005,0.031]    0.69   0.299 [0.277,0.321]    0.432    0.449
+  iuxray -> nih            0.098 [0.080,0.117]    0.42   0.165 [0.153,0.179]    0.391    0.021
+  iuxray -> vindr          0.173 [0.157,0.191]    0.52   0.255 [0.245,0.265]    0.495    0.002
+  iuxray -> iuxray         0.062 [0.039,0.088]    0.41   0.099 [0.085,0.114]    0.239    0.098
+per site: nih AUROC 0.768 ECE 0.006 abn-AUROC 0.760 prev 0.31 n 3119 n_inv 889 tau 0.431 lam 0.176
+          vindr AUROC 0.781 ECE 0.057 abn-AUROC 0.803 prev 0.30 n 7489 n_inv 2013 tau 0.414 lam 0.121
+          iuxray AUROC 0.792 ECE 0.034 abn-AUROC 0.726 prev 0.63 n 1825 n_inv 388 tau 0.277 lam 0.108
+domain AUROC: nih|vindr 0.992  nih|iuxray 0.962  vindr|iuxray 0.996
+re-split means (5 seeds), G1 / accept / conf-err:
+  nih->nih 0.042/0.510/0.105  nih->vindr 0.081/0.317/0.046  nih->iuxray 0.026/0.558/0.225
+  vindr->nih 0.028/0.695/0.161  vindr->vindr 0.048/0.526/0.098  vindr->iuxray 0.018/0.723/0.315
+  iuxray->nih 0.073/0.426/0.165  iuxray->vindr 0.139/0.536/0.280  iuxray->iuxray 0.044/0.433/0.102

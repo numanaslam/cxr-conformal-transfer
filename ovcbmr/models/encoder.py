@@ -14,8 +14,13 @@ def load_biomedclip(device="cuda", hf_id="hf-hub:microsoft/BiomedCLIP-PubMedBERT
         torch.backends.cudnn.benchmark = True          # autotune convs for the fixed 224 input
         torch.backends.cuda.matmul.allow_tf32 = True    # TF32 matmul (Ampere+) — free throughput
         torch.backends.cudnn.allow_tf32 = True
-    model, preprocess = open_clip.create_model_from_pretrained(hf_id)
-    tokenizer = open_clip.get_tokenizer(hf_id)
+    if "::" in hf_id:                                  # open_clip built-in name, e.g. "ViT-B-16::openai"
+        name, tag = hf_id.split("::", 1)
+        model, preprocess = open_clip.create_model_from_pretrained(name, pretrained=tag)
+        tokenizer = open_clip.get_tokenizer(name)
+    else:
+        model, preprocess = open_clip.create_model_from_pretrained(hf_id)
+        tokenizer = open_clip.get_tokenizer(hf_id)
     model = model.to(device).eval()
     for p in model.parameters():
         p.requires_grad_(False)

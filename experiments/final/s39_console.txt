@@ -1,0 +1,12 @@
+# s39_nonlinear_g2, GPU machine, 2026-11-10: one-hidden-layer network (256 units) on frozen BiomedCLIP features in place of the Normal probe.
+# per site (test): abnormality AUROC nih 0.724 (tau 0.482, lam 0.198) | vindr 0.841 (0.460, 0.106) | iuxray 0.837 (0.312, 0.083)
+# primary split G2: acc, cer [CI], err|acc, miss|acc
+  nih->nih .55 .107 [.097,.118] .194 .149 | nih->vindr .36 .024 [.020,.027] .066 .038 | nih->iuxray .64 .109 [.092,.129] .169 .163
+  vindr->nih .77 .174 [.161,.188] .225 .154 | vindr->vindr .63 .085 [.079,.092] .135 .052 | vindr->iuxray .82 .157 [.137,.178] .192 .185
+  iuxray->nih .64 .205 [.191,.220] .320 .075 | iuxray->vindr .63 .242 [.231,.251] .384 .010 | iuxray->iuxray .71 .108 [.091,.127] .153 .093
+# 200 redraws (network fixed): cer mean, share above, acc | 20 re-splits (network retrained): cer mean (sd), share above, acc
+  nih->nih .099 .40 .53 | .100 (.008) .55 .51          nih->vindr .024 .00 .34 | .027 (.008) .00 .29
+  nih->iuxray .099 .41 .63 | .086 (.014) .15 .59       vindr->nih .175 1.00 .76 | .179 (.013) 1.00 .76
+  vindr->vindr .099 .41 .63 | .100 (.005) .50 .59     vindr->iuxray .155 1.00 .82 | .147 (.023) 1.00 .80
+  iuxray->nih .189 1.00 .59 | .190 (.031) 1.00 .60     iuxray->vindr .246 1.00 .61 | .266 (.073) 1.00 .61
+  iuxray->iuxray .100 .48 .67 | .097 (.018) .40 .66

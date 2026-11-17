@@ -78,7 +78,7 @@ def main():
     risks = [float(((conf_c >= lam) * loss_c).mean()) for lam in lambdas]   # non-increasing in lam
     lam_hat, _ = crc_threshold(risks, lambdas, n=len(conf_c), alpha=alpha, B=1.0)
     if lam_hat is None:
-        lam_hat = lambdas[-1]
+        lam_hat = float("inf")   # infeasible: defer every study
 
     acc = conf_t >= lam_hat
     coverage = float(acc.mean())

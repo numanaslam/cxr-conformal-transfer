@@ -1,0 +1,22 @@
+# s34_one_image_per_patient, run 2026-11-01 on the GPU machine (C:\paper6_code), pasted by the user.
+# python -m scripts.s34_one_image_per_patient --config configs\vindr.yaml --draws 20
+[s34] NIH images: calib 10711, test 11863; patients: calib 2997, test 3119
+
+=== one image per patient at NIH, 20 draws (clean protocol, seed-42 split) ===
+  setting        quantity           all images   one per patient: mean (sd) [min, max]
+  NIH on-site    G1 false deferral       0.046   0.055 (0.007) [0.045, 0.069]
+  NIH on-site    G2 acceptance           0.498   0.513 (0.013) [0.488, 0.536]
+  NIH on-site    G2 conf-error           0.116   0.098 (0.003) [0.092, 0.105]
+  NIH->VinDr     G1 false deferral       0.055   0.096 (0.011) [0.077, 0.115]
+  NIH->VinDr     G2 acceptance           0.254   0.328 (0.013) [0.304, 0.347]
+  NIH->VinDr     G2 conf-error           0.031   0.044 (0.002) [0.040, 0.048]
+  VinDr on-site  G1 false deferral       0.061   0.061 (0.000) [0.061, 0.061]
+  VinDr on-site  G2 acceptance           0.486   0.486 (0.000) [0.486, 0.486]
+  VinDr on-site  G2 conf-error           0.085   0.085 (0.000) [0.085, 0.085]
+  VinDr->NIH     G1 false deferral       0.053   0.038 (0.004) [0.030, 0.047]
+  VinDr->NIH     G2 acceptance           0.698   0.649 (0.004) [0.643, 0.659]
+  VinDr->NIH     G2 conf-error           0.176   0.142 (0.003) [0.136, 0.150]
+  NIH G1 denominators, one per patient (draw 0): test n=889
+
+=== VinDr Nodule/Mass as one class (n+=416) ===
+  AUROC  max(Nodule, Mass) 0.726 | Nodule head 0.689 | Mass head 0.748
