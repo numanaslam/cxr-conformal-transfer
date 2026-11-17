@@ -1,28 +1,27 @@
 {
-  "title": "Code and results for \"Cross-Site Transfer of Conformal Abstention Guarantees in Interpretable Chest X-ray Concept Models\"",
+  "title": "Code and results for \"Cross-dataset transfer of conformal abstention thresholds in chest radiograph classification\"",
   "upload_type": "software",
   "access_right": "open",
   "license": "mit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "language": "eng",
-  "description": "<p>Python code and result files for the article \"Cross-Site Transfer of Conformal Abstention Guarantees in Interpretable Chest X-ray Concept Models\". The code builds a frozen BiomedCLIP encoder with nine linear, Platt-calibrated concept heads trained on NIH ChestX-ray14, and evaluates two conformal abstention rules, a split-conformal false-deferral threshold and a conformal risk control selective threshold, on-site and after transfer between NIH ChestX-ray14 and VinDr-CXR in both directions, on the primary split and on five re-splits.</p><p>The archive includes the result files and console logs of the reported run, from which every number in the article is taken, and a step-by-step reproduction guide.</p><p><strong>The data are not redistributed.</strong> NIH ChestX-ray14 is available from the NIH Clinical Center, and VinDr-CXR from PhysioNet under credentialed access; the study used the 512-pixel copy redistributed on Kaggle. The archive contains no images.</p>",
+  "description": "<p>Python code, result files and console logs for the article \"Cross-dataset transfer of conformal abstention thresholds in chest radiograph classification\". The code builds a frozen BiomedCLIP encoder with linear, Platt-calibrated concept heads and evaluates two conformal abstention rules, a split-conformal false-deferral threshold and a conformal risk control selective threshold, on-site and after transfer between NIH ChestX-ray14, VinDr-CXR and the Indiana University chest X-ray collection. Sensitivity analyses cover a second encoder (CLIP), a one-hidden-layer concept head, and the full Indiana label set.</p><p>The archive includes the result files and console logs of the reported runs, from which every number in the article is taken, and a step-by-step reproduction guide that maps each table and figure to its script and result file.</p><p><strong>The data are not redistributed.</strong> NIH ChestX-ray14 is available from the NIH Clinical Center, VinDr-CXR from PhysioNet under credentialed access (the study used the 512-pixel copy redistributed on Kaggle), and the Indiana collection from the National Library of Medicine (Open-i). The archive contains no images.</p>",
   "creators": [
     {"name": "Aslam, Numan", "affiliation": "Department of Computer Sciences, University of Central Punjab, Lahore, Pakistan", "orcid": "0009-0007-7591-0577"},
     {"name": "Mustafa, Ghulam", "affiliation": "Department of Computer Sciences, University of Central Punjab, Lahore, Pakistan"},
-    {"name": "Qureshi, Adnan N.", "affiliation": "Department of Computer Sciences, Newman University, Birmingham, United Kingdom"},
-    {"name": "Rehman, Zia Ul", "affiliation": "Government College University, Lahore, Pakistan"},
-    {"name": "Raza, Usman Ahmed", "affiliation": "Department of Computational Intelligence, University of Naples Federico II, Naples, Italy"}
+    {"name": "Rehman, Zia Ul", "affiliation": "Department of Computer Science, Government College University Lahore, Lahore, Pakistan", "orcid": "0009-0009-4880-2671"}
   ],
   "keywords": [
     "conformal prediction",
     "selective prediction",
-    "concept-based models",
     "chest radiography",
     "distribution shift",
+    "multi-site evaluation",
     "uncertainty quantification"
   ],
   "related_identifiers": [
     {"identifier": "10.1109/CVPR.2017.369", "relation": "references", "scheme": "doi", "resource_type": "publication-conferencepaper"},
-    {"identifier": "10.1038/s41597-022-01498-w", "relation": "references", "scheme": "doi", "resource_type": "publication-article"}
+    {"identifier": "10.1038/s41597-022-01498-w", "relation": "references", "scheme": "doi", "resource_type": "publication-article"},
+    {"identifier": "10.1093/jamia/ocv080", "relation": "references", "scheme": "doi", "resource_type": "publication-article"}
   ]
 }
