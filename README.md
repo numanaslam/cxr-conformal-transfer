@@ -199,7 +199,7 @@ ChestX-ray14 and VinDr-CXR; the later stages are single commands, listed in the 
     ```
 
     The first command draws Fig. 2 and the second draws Fig. S1. Fig. 1 is drawn by
-    `scripts/make_fig_method_2row.py` from four NIH ChestX-ray14 test images, which are not included and
+    `scripts/make_fig_method_2row.py --audit --px 3000` from four NIH ChestX-ray14 test images, which are not included and
     are exported from the NIH data with `scripts/export_fig_images.py`.
 
 **Reading the results without rerunning.** Every reported number can be read from the JSON files with any

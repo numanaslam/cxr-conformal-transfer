@@ -1,10 +1,10 @@
-"""[figure] Method overview in two rows (Figure 1, print layout): (a) three sites, (b) the frozen concept model,
-(c) the two separate conformal rules. Drawn at the printed size, 165 mm wide (a full
+"""[figure] Method overview (Figure 1): (a) three sites, (b) the frozen concept model,
+(c) the two separate conformal rules and, with --audit, (d) the transfer audit. Drawn at the printed size, 165 mm wide (a full
 page width of 16.51 cm), in millimetre coordinates, so every label prints at its stated point size: body text 8 pt,
 headings 9 pt, panel letters 10 pt, all Arial and black. The radiographs are NIH ChestX-ray14 test
 images (licence-safe); the small distributions in (c) are schematic, not data.
 
-    python scripts/make_fig_method_2row.py --out fig_method.png \
+    python scripts/make_fig_method_2row.py --audit --px 3000 --out fig1.png \
         --pick nih=0 vindr=nih_1 iuxray=nih_2
 
 Writes the PNG (600 dpi, RGB) and a TIFF next to it.
@@ -14,6 +14,7 @@ import argparse
 import os
 
 W_MM, H_MM, DPI = 165.0, 103.0, 600
+AUDIT_H = 39.0             # height added by panel (d), --audit
 INK = "#000000"            # all labels in black
 SOFT = "#5f6b76"           # rules and axis lines only, never text
 LINE = "#c9d1d9"
@@ -27,8 +28,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="fig_method.png")
     ap.add_argument("--images", default="fig_assets")
+    ap.add_argument("--audit", action="store_true", help="add panel (d), the transfer audit, as a third row")
+    ap.add_argument("--px", type=int, default=0, help="also resize the PNG to this width in pixels")
     ap.add_argument("--pick", nargs="*", default=["nih=0", "vindr=nih_1", "iuxray=nih_2"])
     a = ap.parse_args()
+    global H_MM
+    OFF = AUDIT_H if a.audit else 0.0
+    H_MM = H_MM + OFF
     import numpy as np
     import matplotlib
     matplotlib.use("Agg")
@@ -87,7 +93,7 @@ def main():
         text(x + 6.6, y + h - 3.6, title, size=HEAD, weight="bold")
 
     # ================================================================ row 1
-    R1, H1 = 48.0, 54.0                       # row 1 spans y = 48 .. 102
+    R1, H1 = 48.0 + OFF, 54.0                       # row 1 spans y = 48 .. 102
     panel(1.0, R1, 61.0, H1, "a", "Three sites")
     panel(64.0, R1, 100.0, H1, "b", "Frozen concept model, fit once at NIH")
 
@@ -157,7 +163,7 @@ def main():
 
 
     # ================================================================ row 2
-    R2, H2 = 1.0, 45.0
+    R2, H2 = 1.0 + OFF, 45.0
     # row link
     arrow(91.3, R1 + 1.4, 91.3, R2 + H2 + 0.3, lw=1.0)
     panel(1.0, R2, 163.0, H2, "c", "Two separate conformal rules, calibrated on labelled studies at the site of use")
@@ -221,10 +227,62 @@ def main():
 
     text(7.6, R2 + 37.0, "Accepted studies return the call and named findings; deferred studies go to a radiologist.")
 
+    # ================================================================ row 3: the transfer audit
+    if a.audit:
+        R3, H3 = 1.0, AUDIT_H - 2.0
+        ACC = "#8a3b12"
+        box(1.0, R3, 163.0, H3, fc="#fbf3ea", ec=ACC, lw=1.1, r=1.8, z=0)
+        text(3.2, R3 + H3 - 3.6, "d", size=LETTER, weight="bold")
+        text(7.6, R3 + H3 - 3.6, "Transfer audit, the design this study contributes", size=HEAD, weight="bold")
+        arrow(82.5, R2 - 0.2, 82.5, R3 + H3 + 0.3, lw=1.0)
+        # two thresholds
+        def tbox(y, head, l1, l2, col):
+            box(3.0, y, 37.0, 12.0, ec=col, lw=0.8, r=1.0)
+            ax.add_patch(Rectangle((3.0, y + 0.25), 1.4, 11.5, fc=col, ec="none", zorder=3))
+            text(6.2, y + 9.0, head, weight="bold")
+            text(6.2, y + 5.6, l1)
+            text(6.2, y + 2.3, l2)
+        tbox(R3 + 17.0, "Transferred threshold", "calibrated at site c,", "applied at site d", RED)
+        tbox(R3 + 2.0, "Local threshold", "recalibrated on labelled", "studies at site d", GREEN)
+        # comparison
+        box(45.5, R3 + 6.0, 34.0, 19.0, ec=LINE, lw=0.6, r=1.0)
+        text(62.5, R3 + 21.4, "Compare with the", ha="center", weight="bold")
+        text(62.5, R3 + 18.0, "stated target", ha="center", weight="bold")
+        text(62.5, R3 + 13.8, "rates on the test", ha="center")
+        text(62.5, R3 + 10.5, "studies of site d", ha="center")
+        arrow(40.2, R3 + 23.0, 45.3, R3 + 19.5, lw=0.8)
+        arrow(40.2, R3 + 8.0, 45.3, R3 + 11.5, lw=0.8)
+        arrow(79.7, R3 + 15.5, 84.3, R3 + 15.5, lw=0.8)
+        # schematic of the outcome over repartitions
+        a3 = inset(87.0, R3 + 6.5, 33.0, 20.5)
+        rng = np.random.default_rng(3)
+        loc = 0.10 + rng.normal(0, 0.012, 40); trn = 0.165 + rng.normal(0, 0.012, 40)
+        a3.scatter(0 + rng.uniform(-0.18, 0.18, 40), loc, s=5, fc="none", ec=GREEN, lw=0.5)
+        a3.scatter(1 + rng.uniform(-0.18, 0.18, 40), trn, s=5, fc="none", ec=RED, lw=0.5)
+        a3.axhline(0.10, color=INK, lw=0.7, ls="--")
+        a3.set_xlim(-0.55, 1.55); a3.set_ylim(0.055, 0.215)
+        a3.set_xticks([]); a3.set_yticks([]); a3.patch.set_alpha(0)
+        for k, sp in a3.spines.items():
+            sp.set_visible(k in ("left", "bottom")); sp.set_color(SOFT); sp.set_linewidth(0.6)
+        text(94.6, R3 + 4.2, "local", ha="center")
+        text(112.4, R3 + 4.2, "transferred", ha="center")
+        text(85.8, R3 + 23.0, "rate", ha="center", rotation=90)
+        text(118.6, R3 + 10.6, "target", ha="right")
+        text(103.5, R3 + 29.4, "Each circle is one repartition", ha="center")
+        # what is repeated
+        x0 = 124.0
+        rows = [("Repeated for", True), ("every ordered pair of sites,", False), ("both rules, 200 repartitions", False),
+                ("with the predictor fixed", False), ("and 20 re-splits", False),
+                ("Design choices tested", True), ("label definition, sampling", False), ("unit, encoder, classifier", False)]
+        for i, (s, b) in enumerate(rows):
+            text(x0, R3 + 29.0 - 3.55 * i - (1.0 if i >= 5 else 0.0), s, weight="bold" if b else "normal")
+
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     fig.savefig(a.out, dpi=DPI)
     Image.open(a.out).convert("RGB").save(a.out)
     Image.open(a.out).save(os.path.splitext(a.out)[0] + ".tif", dpi=(DPI, DPI), compression="tiff_lzw")
+    if a.px:
+        im = Image.open(a.out); im.resize((a.px, round(im.height * a.px / im.width)), Image.LANCZOS).save(a.out)
     print(f"[fig] wrote {a.out} ({W_MM:.0f} mm x {H_MM:.0f} mm)")
 
 
