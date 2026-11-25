@@ -3,7 +3,7 @@ message: "If you use this code or these results, please cite the article and thi
 title: "Code and results for \"Cross-dataset transfer of conformal abstention thresholds in chest radiograph classification\""
 type: software
 version: 1.1.0
-date-released: 2026-11-17
+date-released: 2026-11-25
 license: MIT
 repository-code: "https://github.com/numanaslam/cxr-conformal-transfer"
 authors:
@@ -18,6 +18,15 @@ authors:
     given-names: Zia Ul
     affiliation: "Department of Computer Science, Government College University Lahore, Lahore, Pakistan"
     orcid: "https://orcid.org/0009-0009-4880-2671"
+  - family-names: Khan
+    given-names: Muhammad Adnan
+    affiliation: "International Center for Materials Sciences and Technology, Western Caspian University, Baku, AZ1001, Azerbaijan; Riphah School of Computing and Innovation, Faculty of Computing, Riphah International University, Lahore Campus, Lahore, 54000, Pakistan; Universidad UTE, Dirección General de Posgrados, SYNERA Hub, 170527, Quito, Ecuador"
+  - family-names: Ashraf
+    given-names: Arselan
+    affiliation: "Faculty of Computing and Informatics, Multimedia University, Cyberjaya, 63100, Malaysia"
+  - family-names: Khan
+    given-names: Muhammad Amir
+    affiliation: "Faculty of Computer and Mathematical Sciences, Universiti Teknologi MARA, 40450 Shah Alam, Selangor, Malaysia"
 keywords:
   - conformal prediction
   - selective prediction
