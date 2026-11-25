@@ -10,7 +10,7 @@ results.**
 | | |
 |---|---|
 | Article | Cross-dataset transfer of conformal abstention thresholds in chest radiograph classification (PeerJ Computer Science, Research Article) |
-| Code and results | GitHub: https://github.com/numanaslam/cxr-conformal-transfer; archived at Zenodo, https://doi.org/10.5281/zenodo.23219340 |
+| Code and results | GitHub: https://github.com/numanaslam/cxr-conformal-transfer; archived at Zenodo, https://doi.org/10.5281/zenodo.24542270 |
 | Codebook | `CODEBOOK.md` in the repository (Supplemental Article S3) |
 | License | MIT (code and result files); the datasets keep their own terms |
 
